@@ -11,14 +11,18 @@ return array(
 	'name'=>'Altruist Live',
 
 	// preloading 'log' component
-	'preload'=>array('log'),
-
+	//'preload'=>array('log'),
+	'preload' => array(
+    	'bootstrap',
+    	'log'
+ 	),
 	// autoloading model and component classes
 	'import'=>array(
 		'application.models.*',
 		'application.components.*',
 	),
-
+	// YiiBooster includes all the features from its parent
+ 	// project Yii-Bootstrap, thus its gii templates
 	'modules'=>array(
 		// uncomment the following to enable the Gii tool
 		
@@ -27,12 +31,19 @@ return array(
 			'password'=>'@ltruistl1v3',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
+			'generatorPaths' => array(
+          		'bootstrap.gii'
+       		),
 		),
 		
 	),
 
 	// application components
 	'components'=>array(
+		'bootstrap' => array(
+	    	'class' => 'ext.bootstrap.components.Bootstrap',
+	    	'responsiveCss' => true,
+		),
 		'user'=>array(
 			// enable cookie-based authentication
 			'allowAutoLogin'=>true,
