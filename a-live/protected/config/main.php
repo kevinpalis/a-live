@@ -28,7 +28,7 @@ return array(
 		
 		'gii'=>array(
 			'class'=>'system.gii.GiiModule',
-			'password'=>'@ltruistl1v3',
+			'password'=>'altruistl1v3',
 			// If removed, Gii defaults to localhost only. Edit carefully to taste.
 			'ipFilters'=>array('127.0.0.1','::1'),
 			'generatorPaths' => array(
@@ -68,7 +68,7 @@ return array(
 			'connectionString' => 'mysql:host=localhost;dbname=altruistdb',
 			'emulatePrepare' => true,
 			'username' => 'altruista',
-			'password' => '@ltru1st0213',
+			'password' => 'altruistl1v3',
 			'charset' => 'utf8',
 		),
 		
