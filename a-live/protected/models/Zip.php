@@ -1,13 +1,13 @@
 <?php
 
 /**
- * This is the model class for table "zip".
+ * This is the model class for table "Zip".
  *
- * The followings are the available columns in table 'zip':
+ * The followings are the available columns in table 'Zip':
  * @property string $idZipCode
  * @property string $cityName
  * @property string $countyName
- * @property string $country
+ * @property string $state
  *
  * The followings are the available model relations:
  * @property Caregiver[] $caregivers
@@ -33,7 +33,7 @@ class Zip extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'zip';
+		return 'Zip';
 	}
 
 	/**
@@ -46,10 +46,10 @@ class Zip extends CActiveRecord
 		return array(
 			array('idZipCode, cityName', 'required'),
 			array('idZipCode', 'length', 'max'=>10),
-			array('cityName, countyName, country', 'length', 'max'=>40),
+			array('cityName, countyName, state', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('idZipCode, cityName, countyName, country', 'safe', 'on'=>'search'),
+			array('idZipCode, cityName, countyName, state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -78,7 +78,7 @@ class Zip extends CActiveRecord
 			'idZipCode' => 'Id Zip Code',
 			'cityName' => 'City Name',
 			'countyName' => 'County Name',
-			'country' => 'Country',
+			'state' => 'State',
 		);
 	}
 
@@ -96,7 +96,7 @@ class Zip extends CActiveRecord
 		$criteria->compare('idZipCode',$this->idZipCode,true);
 		$criteria->compare('cityName',$this->cityName,true);
 		$criteria->compare('countyName',$this->countyName,true);
-		$criteria->compare('country',$this->country,true);
+		$criteria->compare('state',$this->state,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

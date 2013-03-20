@@ -1,6 +1,6 @@
 <?php
 
-class EmployeeController extends Controller
+class EmployeeController extends RController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,7 +14,8 @@ class EmployeeController extends Controller
 	public function filters()
 	{
 		return array(
-			'accessControl', // perform access control for CRUD operations
+			//'accessControl', // perform access control for CRUD operations
+			'rights', //use RIGHTS access control filters
 		);
 	}
 
@@ -23,26 +24,26 @@ class EmployeeController extends Controller
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	public function accessRules()
+	/*public function accessRules()
 	{
 		return array(
-			array('allow',  // allow all users to perform 'index' and 'view' actions
+			array('allow',  // allow authenticated users to perform 'index' and 'view' actions
 				'actions'=>array('index','view'),
-				'users'=>array('*'),
-			),
-			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
 				'users'=>array('@'),
+			),
+			array('allow', // allow only admin users to perform 'create' and 'update' actions
+				'actions'=>array('create','update'),
+				'users'=>array('altruist.superuser@altruist.com'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
 				'actions'=>array('admin','delete'),
-				'users'=>array('admin'),
+				'users'=>array('altruist.superuser@altruist.com'),
 			),
 			array('deny',  // deny all users
 				'users'=>array('*'),
 			),
 		);
-	}
+	}*/
 
 	/**
 	 * Displays a particular model.
@@ -50,6 +51,18 @@ class EmployeeController extends Controller
 	 */
 	public function actionView($id)
 	{
+		/*$model=new LoginForm;
+		$site=new SiteController;
+		if(Yii::app()->user->isGuest) {
+			// display the login form
+			$this->render('login',array('model'=>$model));
+		}
+		else {			
+			$this->render('view',array(
+				'model'=>$this->loadModel($id),
+			));
+		}*/
+
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));

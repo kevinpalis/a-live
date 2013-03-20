@@ -13,7 +13,7 @@
 
 	<?php echo $form->textFieldRow($model,'countyName',array('class'=>'span5','maxlength'=>40)); ?>
 
-	<?php echo $form->textFieldRow($model,'country',array('class'=>'span5','maxlength'=>40)); ?>
+	<?php echo $form->textFieldRow($model,'state',array('class'=>'span5','maxlength'=>40)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

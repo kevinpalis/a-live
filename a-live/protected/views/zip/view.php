@@ -21,6 +21,6 @@ $this->menu=array(
 		'idZipCode',
 		'cityName',
 		'countyName',
-		'country',
+		'state',
 	),
 )); ?>

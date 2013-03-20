@@ -131,4 +131,11 @@ class Employee extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function beforeSave()
+    {
+        $pass = crypt($this->password, '$2a$10$1qAz2wSx3k3V1n123K3V1n'); //2nd param is the encryption salt
+        $this->password = $pass;
+        return true;
+    }
 }

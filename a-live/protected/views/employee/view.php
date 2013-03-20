@@ -28,7 +28,6 @@ $this->menu=array(
 		'date_start',
 		'birth_date',
 		'assigned_facilities',
-		'password',
 		'department',
 		'email',
 	),

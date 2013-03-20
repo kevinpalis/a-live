@@ -12,8 +12,8 @@
 	<?php echo CHtml::encode($data->countyName); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('country')); ?>:</b>
-	<?php echo CHtml::encode($data->country); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('state')); ?>:</b>
+	<?php echo CHtml::encode($data->state); ?>
 	<br />
 
 
