@@ -1,28 +1,28 @@
 <?php
 $this->breadcrumbs=array(
 	'Clients'=>array('index'),
-	$model->idClient,
+	$model->id,
 );
 
 $this->menu=array(
 	array('label'=>'List Client','url'=>array('index')),
 	array('label'=>'Create Client','url'=>array('create')),
-	array('label'=>'Update Client','url'=>array('update','id'=>$model->idClient)),
-	array('label'=>'Delete Client','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->idClient),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Update Client','url'=>array('update','id'=>$model->id)),
+	array('label'=>'Delete Client','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
 	array('label'=>'Manage Client','url'=>array('admin')),
 );
 ?>
 
-<h1>View Client #<?php echo $model->idClient; ?></h1>
+<h1>View Client #<?php echo $model->id; ?></h1>
 
 <?php $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
-		'idClient',
+		'id',
 		'fname',
 		'lname',
 		'address',
-		'zip',
+		'zipId',
 		'age',
 		'primaryNum',
 		'secondaryNum',
@@ -35,9 +35,9 @@ $this->menu=array(
 		'sex',
 		'height',
 		'weight',
-		'idEmployee',
-		'idFacility',
-		'idFacilityContact',
+		'employeeId',
+		'facilityId',
+		'facilityContactId',
 		'tagforUpdate',
 		'depositAmount',
 		'dateEntered',

@@ -3,15 +3,15 @@
 	'method'=>'get',
 )); ?>
 
-	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'fname',array('class'=>'span5','maxlength'=>30)); ?>
+	<?php echo $form->textFieldRow($model,'fname',array('class'=>'span5','maxlength'=>50)); ?>
 
-	<?php echo $form->textFieldRow($model,'lname',array('class'=>'span5','maxlength'=>30)); ?>
+	<?php echo $form->textFieldRow($model,'lname',array('class'=>'span5','maxlength'=>50)); ?>
 
 	<?php echo $form->textFieldRow($model,'address',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php echo $form->textFieldRow($model,'zip',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'zipId',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'position',array('class'=>'span5','maxlength'=>40)); ?>
 

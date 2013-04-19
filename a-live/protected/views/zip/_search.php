@@ -3,11 +3,15 @@
 	'method'=>'get',
 )); ?>
 
-	<?php echo $form->textFieldRow($model,'idZipCode',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'cityName',array('class'=>'span5','maxlength'=>40)); ?>
+	<?php echo $form->textFieldRow($model,'zipCode',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'countyName',array('class'=>'span5','maxlength'=>40)); ?>
+	<?php echo $form->textFieldRow($model,'mainCity',array('class'=>'span5','maxlength'=>40)); ?>
+
+	<?php echo $form->textFieldRow($model,'acceptableCity',array('class'=>'span5','maxlength'=>40)); ?>
+
+	<?php echo $form->textFieldRow($model,'county',array('class'=>'span5','maxlength'=>40)); ?>
 
 	<?php echo $form->textFieldRow($model,'state',array('class'=>'span5','maxlength'=>40)); ?>
 

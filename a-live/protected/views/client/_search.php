@@ -3,7 +3,7 @@
 	'method'=>'get',
 )); ?>
 
-	<?php echo $form->textFieldRow($model,'idClient',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'fname',array('class'=>'span5','maxlength'=>50)); ?>
 
@@ -11,7 +11,7 @@
 
 	<?php echo $form->textFieldRow($model,'address',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php echo $form->textFieldRow($model,'zip',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'zipId',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'age',array('class'=>'span5')); ?>
 
@@ -27,21 +27,21 @@
 
 	<?php echo $form->textFieldRow($model,'dateEnd',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'status',array('class'=>'span5')); ?>
+	<?php echo $form->textFieldRow($model,'status',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'holidayWork',array('class'=>'span5','maxlength'=>1)); ?>
 
 	<?php echo $form->textFieldRow($model,'sex',array('class'=>'span5','maxlength'=>1)); ?>
 
-	<?php echo $form->textFieldRow($model,'height',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'height',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'weight',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'weight',array('class'=>'span5')); ?>
 
-	<?php echo $form->textFieldRow($model,'idEmployee',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'employeeId',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'idFacility',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'facilityId',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'idFacilityContact',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'facilityContactId',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'tagforUpdate',array('class'=>'span5','maxlength'=>1)); ?>
 

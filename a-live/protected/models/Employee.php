@@ -1,14 +1,14 @@
 <?php
 
 /**
- * This is the model class for table "employee".
+ * This is the model class for table "Employee".
  *
- * The followings are the available columns in table 'employee':
+ * The followings are the available columns in table 'Employee':
  * @property string $id
  * @property string $fname
  * @property string $lname
  * @property string $address
- * @property string $zip
+ * @property string $zipId
  * @property string $position
  * @property string $supervisor
  * @property string $date_start
@@ -21,7 +21,7 @@
  * The followings are the available model relations:
  * @property Checkin[] $checkins
  * @property Client[] $clients
- * @property Zip $zip0
+ * @property Zip $zip
  * @property Materialassignment[] $materialassignments
  */
 class Employee extends CActiveRecord
@@ -41,7 +41,7 @@ class Employee extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'employee';
+		return 'Employee';
 	}
 
 	/**
@@ -52,16 +52,15 @@ class Employee extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fname, lname, address, zip, position, date_start, password, email', 'required'),
-			array('fname, lname', 'length', 'max'=>30),
-			array('address, assigned_facilities', 'length', 'max'=>100),
-			array('zip', 'length', 'max'=>10),
+			array('fname, lname, address, zipId, position, date_start, password, email', 'required'),
+			array('fname, lname, supervisor, department, email', 'length', 'max'=>50),
+			array('address, assigned_facilities, password', 'length', 'max'=>100),
+			array('zipId', 'length', 'max'=>10),
 			array('position', 'length', 'max'=>40),
-			array('supervisor, password, department, email', 'length', 'max'=>50),
 			array('birth_date', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fname, lname, address, zip, position, supervisor, date_start, birth_date, assigned_facilities, password, department, email', 'safe', 'on'=>'search'),
+			array('id, fname, lname, address, zipId, position, supervisor, date_start, birth_date, assigned_facilities, password, department, email', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -73,10 +72,10 @@ class Employee extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'checkins' => array(self::HAS_MANY, 'Checkin', 'Employee_id'),
-			'clients' => array(self::HAS_MANY, 'Client', 'idEmployee'),
-			'zip0' => array(self::BELONGS_TO, 'Zip', 'zip'),
-			'materialassignments' => array(self::HAS_MANY, 'Materialassignment', 'Employee_id'),
+			'checkins' => array(self::HAS_MANY, 'Checkin', 'employeeId'),
+			'clients' => array(self::HAS_MANY, 'Client', 'employeeId'),
+			'zip' => array(self::BELONGS_TO, 'Zip', 'zip'),
+			'materialassignments' => array(self::HAS_MANY, 'Materialassignment', 'employeeId'),
 		);
 	}
 
@@ -90,7 +89,7 @@ class Employee extends CActiveRecord
 			'fname' => 'Fname',
 			'lname' => 'Lname',
 			'address' => 'Address',
-			'zip' => 'Zip',
+			'zipId' => 'Zip',
 			'position' => 'Position',
 			'supervisor' => 'Supervisor',
 			'date_start' => 'Date Start',
@@ -117,7 +116,7 @@ class Employee extends CActiveRecord
 		$criteria->compare('fname',$this->fname,true);
 		$criteria->compare('lname',$this->lname,true);
 		$criteria->compare('address',$this->address,true);
-		$criteria->compare('zip',$this->zip,true);
+		$criteria->compare('zipId',$this->zipId,true);
 		$criteria->compare('position',$this->position,true);
 		$criteria->compare('supervisor',$this->supervisor,true);
 		$criteria->compare('date_start',$this->date_start,true);

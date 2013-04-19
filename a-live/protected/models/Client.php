@@ -4,11 +4,11 @@
  * This is the model class for table "client".
  *
  * The followings are the available columns in table 'client':
- * @property string $idClient
+ * @property string $id
  * @property string $fname
  * @property string $lname
  * @property string $address
- * @property string $zip
+ * @property string $zipId
  * @property integer $age
  * @property string $primaryNum
  * @property string $secondaryNum
@@ -16,14 +16,14 @@
  * @property string $createdBy
  * @property string $dateStart
  * @property string $dateEnd
- * @property integer $status
+ * @property string $status
  * @property string $holidayWork
  * @property string $sex
- * @property string $height
- * @property string $weight
- * @property string $idEmployee
- * @property string $idFacility
- * @property string $idFacilityContact
+ * @property double $height
+ * @property double $weight
+ * @property string $employeeId
+ * @property string $facilityId
+ * @property string $facilityContactId
  * @property string $tagforUpdate
  * @property double $depositAmount
  * @property string $dateEntered
@@ -33,10 +33,10 @@
  * @property Absencetracker[] $absencetrackers
  * @property Caregiverassignment[] $caregiverassignments
  * @property Cilentpayment[] $cilentpayments
- * @property Zip $zip0
- * @property Facility $idFacility0
- * @property Facilitycontact $idFacilityContact0
- * @property Employee $idEmployee0
+ * @property Zip $zip
+ * @property Employee $employee
+ * @property Facility $facility
+ * @property FacilityContact $facilityContact
  * @property Clientcontactperson[] $clientcontactpeople
  * @property Clientintake[] $clientintakes
  * @property Otherexpenses[] $otherexpenses
@@ -70,19 +70,19 @@ class Client extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('fname, lname, address, zip, primaryNum, holidayWork', 'required'),
-			array('age, status', 'numerical', 'integerOnly'=>true),
-			array('depositAmount, creditLimit', 'numerical'),
+			array('fname, lname, address, zipId, primaryNum, holidayWork, sex, employeeId, facilityId, facilityContactId', 'required'),
+			array('age', 'numerical', 'integerOnly'=>true),
+			array('height, weight, depositAmount, creditLimit', 'numerical'),
 			array('fname, lname', 'length', 'max'=>50),
 			array('address', 'length', 'max'=>100),
-			array('zip, primaryNum, secondaryNum, height, weight, idEmployee, idFacility, idFacilityContact', 'length', 'max'=>10),
+			array('zipId, primaryNum, secondaryNum, status, employeeId, facilityId, facilityContactId', 'length', 'max'=>10),
 			array('email', 'length', 'max'=>20),
 			array('createdBy', 'length', 'max'=>70),
 			array('holidayWork, sex, tagforUpdate', 'length', 'max'=>1),
 			array('dateStart, dateEnd, dateEntered', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('idClient, fname, lname, address, zip, age, primaryNum, secondaryNum, email, createdBy, dateStart, dateEnd, status, holidayWork, sex, height, weight, idEmployee, idFacility, idFacilityContact, tagforUpdate, depositAmount, dateEntered, creditLimit', 'safe', 'on'=>'search'),
+			array('id, fname, lname, address, zipId, age, primaryNum, secondaryNum, email, createdBy, dateStart, dateEnd, status, holidayWork, sex, height, weight, employeeId, facilityId, facilityContactId, tagforUpdate, depositAmount, dateEntered, creditLimit', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -94,17 +94,17 @@ class Client extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'absencetrackers' => array(self::HAS_MANY, 'Absencetracker', 'Client_idClient'),
-			'caregiverassignments' => array(self::HAS_MANY, 'Caregiverassignment', 'Client_idClient'),
-			'cilentpayments' => array(self::HAS_MANY, 'Cilentpayment', 'Client_idClient'),
-			'zip0' => array(self::BELONGS_TO, 'Zip', 'zip'),
-			'idFacility0' => array(self::BELONGS_TO, 'Facility', 'idFacility'),
-			'idFacilityContact0' => array(self::BELONGS_TO, 'Facilitycontact', 'idFacilityContact'),
-			'idEmployee0' => array(self::BELONGS_TO, 'Employee', 'idEmployee'),
-			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'Client_idClient'),
-			'clientintakes' => array(self::HAS_MANY, 'Clientintake', 'Client_idClient'),
-			'otherexpenses' => array(self::HAS_MANY, 'Otherexpenses', 'Client_idClient'),
-			'payrollcgs' => array(self::HAS_MANY, 'Payrollcg', 'Client_idClient'),
+			'absencetrackers' => array(self::HAS_MANY, 'Absencetracker', 'clientId'),
+			'caregiverassignments' => array(self::HAS_MANY, 'Caregiverassignment', 'clientId'),
+			'cilentpayments' => array(self::HAS_MANY, 'Cilentpayment', 'clientId'),
+			'zip' => array(self::BELONGS_TO, 'Zip', 'zipId'),
+			'employee' => array(self::BELONGS_TO, 'Employee', 'employeeId'),
+			'facility' => array(self::BELONGS_TO, 'Facility', 'facilityId'),
+			'facilityContact' => array(self::BELONGS_TO, 'FacilityContact', 'facilityContactId'),
+			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'clientId'),
+			'clientintakes' => array(self::HAS_MANY, 'Clientintake', 'clientId'),
+			'otherexpenses' => array(self::HAS_MANY, 'Otherexpenses', 'clientId'),
+			'payrollcgs' => array(self::HAS_MANY, 'Payrollcg', 'clientId'),
 		);
 	}
 
@@ -114,11 +114,11 @@ class Client extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'idClient' => 'Id Client',
+			'id' => 'ID',
 			'fname' => 'Fname',
 			'lname' => 'Lname',
 			'address' => 'Address',
-			'zip' => 'Zip',
+			'zipId' => 'Zip',
 			'age' => 'Age',
 			'primaryNum' => 'Primary Num',
 			'secondaryNum' => 'Secondary Num',
@@ -131,9 +131,9 @@ class Client extends CActiveRecord
 			'sex' => 'Sex',
 			'height' => 'Height',
 			'weight' => 'Weight',
-			'idEmployee' => 'Id Employee',
-			'idFacility' => 'Id Facility',
-			'idFacilityContact' => 'Id Facility Contact',
+			'employeeId' => 'Employee',
+			'facilityId' => 'Facility',
+			'facilityContactId' => 'Facility Contact',
 			'tagforUpdate' => 'Tagfor Update',
 			'depositAmount' => 'Deposit Amount',
 			'dateEntered' => 'Date Entered',
@@ -152,11 +152,11 @@ class Client extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('idClient',$this->idClient,true);
+		$criteria->compare('id',$this->id,true);
 		$criteria->compare('fname',$this->fname,true);
 		$criteria->compare('lname',$this->lname,true);
 		$criteria->compare('address',$this->address,true);
-		$criteria->compare('zip',$this->zip,true);
+		$criteria->compare('zipId',$this->zipId,true);
 		$criteria->compare('age',$this->age);
 		$criteria->compare('primaryNum',$this->primaryNum,true);
 		$criteria->compare('secondaryNum',$this->secondaryNum,true);
@@ -164,14 +164,14 @@ class Client extends CActiveRecord
 		$criteria->compare('createdBy',$this->createdBy,true);
 		$criteria->compare('dateStart',$this->dateStart,true);
 		$criteria->compare('dateEnd',$this->dateEnd,true);
-		$criteria->compare('status',$this->status);
+		$criteria->compare('status',$this->status,true);
 		$criteria->compare('holidayWork',$this->holidayWork,true);
 		$criteria->compare('sex',$this->sex,true);
-		$criteria->compare('height',$this->height,true);
-		$criteria->compare('weight',$this->weight,true);
-		$criteria->compare('idEmployee',$this->idEmployee,true);
-		$criteria->compare('idFacility',$this->idFacility,true);
-		$criteria->compare('idFacilityContact',$this->idFacilityContact,true);
+		$criteria->compare('height',$this->height);
+		$criteria->compare('weight',$this->weight);
+		$criteria->compare('employeeId',$this->employeeId,true);
+		$criteria->compare('facilityId',$this->facilityId,true);
+		$criteria->compare('facilityContactId',$this->facilityContactId,true);
 		$criteria->compare('tagforUpdate',$this->tagforUpdate,true);
 		$criteria->compare('depositAmount',$this->depositAmount);
 		$criteria->compare('dateEntered',$this->dateEntered,true);

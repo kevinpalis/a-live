@@ -1,6 +1,6 @@
 <?php
 
-class ZipController extends RController
+class AbsencetrackerController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,8 +14,7 @@ class ZipController extends RController
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
-			'rights', //use RIGHTS access control filters
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
 
@@ -24,7 +23,7 @@ class ZipController extends RController
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -43,7 +42,7 @@ class ZipController extends RController
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 
 	/**
 	 * Displays a particular model.
@@ -62,14 +61,14 @@ class ZipController extends RController
 	 */
 	public function actionCreate()
 	{
-		$model=new Zip;
+		$model=new Absencetracker;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Zip']))
+		if(isset($_POST['Absencetracker']))
 		{
-			$model->attributes=$_POST['Zip'];
+			$model->attributes=$_POST['Absencetracker'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -91,9 +90,9 @@ class ZipController extends RController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Zip']))
+		if(isset($_POST['Absencetracker']))
 		{
-			$model->attributes=$_POST['Zip'];
+			$model->attributes=$_POST['Absencetracker'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -128,7 +127,7 @@ class ZipController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Zip');
+		$dataProvider=new CActiveDataProvider('Absencetracker');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -139,10 +138,10 @@ class ZipController extends RController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Zip('search');
+		$model=new Absencetracker('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Zip']))
-			$model->attributes=$_GET['Zip'];
+		if(isset($_GET['Absencetracker']))
+			$model->attributes=$_GET['Absencetracker'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -156,7 +155,7 @@ class ZipController extends RController
 	 */
 	public function loadModel($id)
 	{
-		$model=Zip::model()->findByPk($id);
+		$model=Absencetracker::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -168,7 +167,7 @@ class ZipController extends RController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='zip-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='absencetracker-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

@@ -1,6 +1,6 @@
 <?php
 
-class ClientController extends RController
+class ClientController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,8 +14,7 @@ class ClientController extends RController
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
-			'rights', //use RIGHTS access control filters
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
 
@@ -24,7 +23,7 @@ class ClientController extends RController
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -43,7 +42,7 @@ class ClientController extends RController
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 
 	/**
 	 * Displays a particular model.
@@ -71,7 +70,7 @@ class ClientController extends RController
 		{
 			$model->attributes=$_POST['Client'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->idClient));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -95,7 +94,7 @@ class ClientController extends RController
 		{
 			$model->attributes=$_POST['Client'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->idClient));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

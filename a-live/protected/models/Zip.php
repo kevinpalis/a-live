@@ -4,9 +4,11 @@
  * This is the model class for table "Zip".
  *
  * The followings are the available columns in table 'Zip':
- * @property string $idZipCode
- * @property string $cityName
- * @property string $countyName
+ * @property string $id
+ * @property string $zipCode
+ * @property string $mainCity
+ * @property string $acceptableCity
+ * @property string $county
  * @property string $state
  *
  * The followings are the available model relations:
@@ -44,12 +46,12 @@ class Zip extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('idZipCode, cityName', 'required'),
-			array('idZipCode', 'length', 'max'=>10),
-			array('cityName, countyName, state', 'length', 'max'=>40),
+			array('zipCode, mainCity, acceptableCity', 'required'),
+			array('zipCode', 'length', 'max'=>10),
+			array('mainCity, acceptableCity, county, state', 'length', 'max'=>40),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('idZipCode, cityName, countyName, state', 'safe', 'on'=>'search'),
+			array('id, zipCode, mainCity, acceptableCity, county, state', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -61,9 +63,9 @@ class Zip extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'caregivers' => array(self::HAS_MANY, 'Caregiver', 'zip'),
-			'clients' => array(self::HAS_MANY, 'Client', 'zip'),
-			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'zip'),
+			'caregivers' => array(self::HAS_MANY, 'Caregiver', 'zipId'),
+			'clients' => array(self::HAS_MANY, 'Client', 'zipId'),
+			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'zipId'),
 			'employees' => array(self::HAS_MANY, 'Employee', 'zip'),
 			'facilities' => array(self::HAS_MANY, 'Facility', 'zip'),
 		);
@@ -75,9 +77,11 @@ class Zip extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'idZipCode' => 'Id Zip Code',
-			'cityName' => 'City Name',
-			'countyName' => 'County Name',
+			'id' => 'ID',
+			'zipCode' => 'Zip Code',
+			'mainCity' => 'Main City',
+			'acceptableCity' => 'Acceptable City',
+			'county' => 'County',
 			'state' => 'State',
 		);
 	}
@@ -93,9 +97,11 @@ class Zip extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('idZipCode',$this->idZipCode,true);
-		$criteria->compare('cityName',$this->cityName,true);
-		$criteria->compare('countyName',$this->countyName,true);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('zipCode',$this->zipCode,true);
+		$criteria->compare('mainCity',$this->mainCity,true);
+		$criteria->compare('acceptableCity',$this->acceptableCity,true);
+		$criteria->compare('county',$this->county,true);
 		$criteria->compare('state',$this->state,true);
 
 		return new CActiveDataProvider($this, array(

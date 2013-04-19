@@ -16,8 +16,8 @@
 	<?php echo CHtml::encode($data->address); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('zip')); ?>:</b>
-	<?php echo CHtml::encode($data->zip); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('zipId')); ?>:</b>
+	<?php echo CHtml::encode($data->zipId); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('position')); ?>:</b>

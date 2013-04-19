@@ -1,7 +1,7 @@
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idClient')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->idClient),array('view','id'=>$data->idClient)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fname')); ?>:</b>
@@ -16,8 +16,8 @@
 	<?php echo CHtml::encode($data->address); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('zip')); ?>:</b>
-	<?php echo CHtml::encode($data->zip); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('zipId')); ?>:</b>
+	<?php echo CHtml::encode($data->zipId); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('age')); ?>:</b>
@@ -69,16 +69,16 @@
 	<?php echo CHtml::encode($data->weight); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idEmployee')); ?>:</b>
-	<?php echo CHtml::encode($data->idEmployee); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('employeeId')); ?>:</b>
+	<?php echo CHtml::encode($data->employeeId); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idFacility')); ?>:</b>
-	<?php echo CHtml::encode($data->idFacility); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('facilityId')); ?>:</b>
+	<?php echo CHtml::encode($data->facilityId); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idFacilityContact')); ?>:</b>
-	<?php echo CHtml::encode($data->idFacilityContact); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('facilityContactId')); ?>:</b>
+	<?php echo CHtml::encode($data->facilityContactId); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('tagforUpdate')); ?>:</b>

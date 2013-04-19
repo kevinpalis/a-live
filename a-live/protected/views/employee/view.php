@@ -22,7 +22,7 @@ $this->menu=array(
 		'fname',
 		'lname',
 		'address',
-		'zip',
+		'zipId',
 		'position',
 		'supervisor',
 		'date_start',
