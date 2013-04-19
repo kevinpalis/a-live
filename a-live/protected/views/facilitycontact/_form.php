@@ -7,7 +7,7 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<?php echo $form->textFieldRow($model,'Facility_idFacility',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'facilityId',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'fname',array('class'=>'span5','maxlength'=>50)); ?>
 

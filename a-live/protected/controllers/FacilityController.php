@@ -71,7 +71,7 @@ class FacilityController extends RController
 		{
 			$model->attributes=$_POST['Facility'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->idFacility));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -95,7 +95,7 @@ class FacilityController extends RController
 		{
 			$model->attributes=$_POST['Facility'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->idFacility));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

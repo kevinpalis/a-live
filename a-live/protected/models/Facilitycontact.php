@@ -4,8 +4,8 @@
  * This is the model class for table "facilitycontact".
  *
  * The followings are the available columns in table 'facilitycontact':
- * @property string $idFacilityContact
- * @property string $Facility_idFacility
+ * @property string $id
+ * @property string $facilityId
  * @property string $fname
  * @property string $lname
  * @property string $primaryContact
@@ -13,8 +13,7 @@
  * @property string $facilityContactType
  *
  * The followings are the available model relations:
- * @property Client[] $clients
- * @property Facility $facilityIdFacility
+ * @property Facility $facility
  */
 class Facilitycontact extends CActiveRecord
 {
@@ -44,13 +43,13 @@ class Facilitycontact extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('Facility_idFacility', 'required'),
-			array('Facility_idFacility', 'length', 'max'=>10),
+			array('facilityId', 'required'),
+			array('facilityId', 'length', 'max'=>10),
 			array('fname, lname, facilityContactType', 'length', 'max'=>50),
 			array('primaryContact, secondaryContactNum', 'length', 'max'=>15),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('idFacilityContact, Facility_idFacility, fname, lname, primaryContact, secondaryContactNum, facilityContactType', 'safe', 'on'=>'search'),
+			array('id, facilityId, fname, lname, primaryContact, secondaryContactNum, facilityContactType', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -62,8 +61,7 @@ class Facilitycontact extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clients' => array(self::HAS_MANY, 'Client', 'idFacilityContact'),
-			'facilityIdFacility' => array(self::BELONGS_TO, 'Facility', 'Facility_idFacility'),
+			'facility' => array(self::BELONGS_TO, 'Facility', 'facilityId'),
 		);
 	}
 
@@ -73,8 +71,8 @@ class Facilitycontact extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'idFacilityContact' => 'Id Facility Contact',
-			'Facility_idFacility' => 'Facility Id Facility',
+			'id' => 'ID',
+			'facilityId' => 'Facility',
 			'fname' => 'Fname',
 			'lname' => 'Lname',
 			'primaryContact' => 'Primary Contact',
@@ -94,8 +92,8 @@ class Facilitycontact extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('idFacilityContact',$this->idFacilityContact,true);
-		$criteria->compare('Facility_idFacility',$this->Facility_idFacility,true);
+		$criteria->compare('id',$this->id,true);
+		$criteria->compare('facilityId',$this->facilityId,true);
 		$criteria->compare('fname',$this->fname,true);
 		$criteria->compare('lname',$this->lname,true);
 		$criteria->compare('primaryContact',$this->primaryContact,true);

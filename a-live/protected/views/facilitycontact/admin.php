@@ -42,8 +42,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
-		'idFacilityContact',
-		'Facility_idFacility',
+		'id',
+		'facilityId',
 		'fname',
 		'lname',
 		'primaryContact',

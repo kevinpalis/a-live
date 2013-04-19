@@ -1,7 +1,7 @@
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idFacility')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->idFacility),array('view','id'=>$data->idFacility)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('facilityName')); ?>:</b>
@@ -12,8 +12,8 @@
 	<?php echo CHtml::encode($data->addres); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('zip')); ?>:</b>
-	<?php echo CHtml::encode($data->zip); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('zipId')); ?>:</b>
+	<?php echo CHtml::encode($data->zipId); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('facilityStatus')); ?>:</b>

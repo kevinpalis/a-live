@@ -1,11 +1,11 @@
 <div class="view">
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('idFacilityContact')); ?>:</b>
-	<?php echo CHtml::link(CHtml::encode($data->idFacilityContact),array('view','id'=>$data->idFacilityContact)); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('id')); ?>:</b>
+	<?php echo CHtml::link(CHtml::encode($data->id),array('view','id'=>$data->id)); ?>
 	<br />
 
-	<b><?php echo CHtml::encode($data->getAttributeLabel('Facility_idFacility')); ?>:</b>
-	<?php echo CHtml::encode($data->Facility_idFacility); ?>
+	<b><?php echo CHtml::encode($data->getAttributeLabel('facilityId')); ?>:</b>
+	<?php echo CHtml::encode($data->facilityId); ?>
 	<br />
 
 	<b><?php echo CHtml::encode($data->getAttributeLabel('fname')); ?>:</b>

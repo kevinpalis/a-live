@@ -19,6 +19,7 @@ class FacilitycontactController extends RController
 		);
 	}
 
+
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
@@ -71,7 +72,7 @@ class FacilitycontactController extends RController
 		{
 			$model->attributes=$_POST['Facilitycontact'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->idFacilityContact));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -95,7 +96,7 @@ class FacilitycontactController extends RController
 		{
 			$model->attributes=$_POST['Facilitycontact'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->idFacilityContact));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('update',array(

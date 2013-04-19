@@ -11,9 +11,9 @@
 
 	<?php echo $form->textFieldRow($model,'addres',array('class'=>'span5','maxlength'=>100)); ?>
 
-	<?php echo $form->textFieldRow($model,'zip',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'zipId',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'facilityStatus',array('class'=>'span5','maxlength'=>20)); ?>
+	<?php echo $form->textFieldRow($model,'facilityStatus',array('class'=>'span5','maxlength'=>50)); ?>
 
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(

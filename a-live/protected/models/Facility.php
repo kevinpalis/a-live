@@ -4,15 +4,16 @@
  * This is the model class for table "facility".
  *
  * The followings are the available columns in table 'facility':
- * @property string $idFacility
+ * @property string $id
  * @property string $facilityName
  * @property string $addres
- * @property string $zip
+ * @property string $zipId
  * @property string $facilityStatus
  *
  * The followings are the available model relations:
+ * @property Checkin[] $checkins
  * @property Client[] $clients
- * @property Zip $zip0
+ * @property Zip $zip
  * @property Facilitycontact[] $facilitycontacts
  */
 class Facility extends CActiveRecord
@@ -44,11 +45,11 @@ class Facility extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			array('facilityName, addres', 'length', 'max'=>100),
-			array('zip', 'length', 'max'=>10),
-			array('facilityStatus', 'length', 'max'=>20),
+			array('zipId', 'length', 'max'=>10),
+			array('facilityStatus', 'length', 'max'=>50),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('idFacility, facilityName, addres, zip, facilityStatus', 'safe', 'on'=>'search'),
+			array('id, facilityName, addres, zipId, facilityStatus', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -60,9 +61,10 @@ class Facility extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'clients' => array(self::HAS_MANY, 'Client', 'idFacility'),
-			'zip0' => array(self::BELONGS_TO, 'Zip', 'zip'),
-			'facilitycontacts' => array(self::HAS_MANY, 'Facilitycontact', 'Facility_idFacility'),
+			'checkins' => array(self::HAS_MANY, 'Checkin', 'facilityId'),
+			'clients' => array(self::HAS_MANY, 'Client', 'facilityId'),
+			'zip' => array(self::BELONGS_TO, 'Zip', 'zip'),
+			'facilitycontacts' => array(self::HAS_MANY, 'Facilitycontact', 'facilityId'),
 		);
 	}
 
@@ -72,10 +74,10 @@ class Facility extends CActiveRecord
 	public function attributeLabels()
 	{
 		return array(
-			'idFacility' => 'Id Facility',
+			'id' => 'ID',
 			'facilityName' => 'Facility Name',
 			'addres' => 'Addres',
-			'zip' => 'Zip',
+			'zipId' => 'Zip',
 			'facilityStatus' => 'Facility Status',
 		);
 	}
@@ -91,10 +93,10 @@ class Facility extends CActiveRecord
 
 		$criteria=new CDbCriteria;
 
-		$criteria->compare('idFacility',$this->idFacility,true);
+		$criteria->compare('id',$this->id,true);
 		$criteria->compare('facilityName',$this->facilityName,true);
 		$criteria->compare('addres',$this->addres,true);
-		$criteria->compare('zip',$this->zip,true);
+		$criteria->compare('zipId',$this->zipId,true);
 		$criteria->compare('facilityStatus',$this->facilityStatus,true);
 
 		return new CActiveDataProvider($this, array(

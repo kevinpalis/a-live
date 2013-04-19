@@ -3,9 +3,9 @@
 	'method'=>'get',
 )); ?>
 
-	<?php echo $form->textFieldRow($model,'idFacilityContact',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'id',array('class'=>'span5','maxlength'=>10)); ?>
 
-	<?php echo $form->textFieldRow($model,'Facility_idFacility',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'facilityId',array('class'=>'span5','maxlength'=>10)); ?>
 
 	<?php echo $form->textFieldRow($model,'fname',array('class'=>'span5','maxlength'=>50)); ?>
 
