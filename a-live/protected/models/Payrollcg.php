@@ -1,29 +1,28 @@
 <?php
 
 /**
- * This is the model class for table "zip".
+ * This is the model class for table "payrollcg".
  *
- * The followings are the available columns in table 'zip':
+ * The followings are the available columns in table 'payrollcg':
  * @property string $id
- * @property string $zipCode
- * @property string $mainCity
- * @property string $acceptableCity
- * @property string $county
- * @property string $state
+ * @property string $caregiverId
+ * @property string $clientId
+ * @property string $dateStart
+ * @property string $dateEnd
+ * @property double $amountPaid
+ * @property string $payType
+ * @property string $dateCreated
  *
  * The followings are the available model relations:
- * @property Caregiver[] $caregivers
- * @property Client[] $clients
- * @property Clientcontactperson[] $clientcontactpeople
- * @property Employee[] $employees
- * @property Facility[] $facilities
+ * @property Caregiver $caregiver
+ * @property Client $client
  */
-class Zip extends CActiveRecord
+class Payrollcg extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Zip the static model class
+	 * @return Payrollcg the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -35,7 +34,7 @@ class Zip extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'zip';
+		return 'payrollcg';
 	}
 
 	/**
@@ -46,12 +45,14 @@ class Zip extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('zipCode, mainCity, acceptableCity', 'required'),
-			array('zipCode', 'length', 'max'=>10),
-			array('mainCity, acceptableCity, county, state', 'length', 'max'=>40),
+			array('caregiverId, clientId', 'required'),
+			array('amountPaid', 'numerical'),
+			array('caregiverId, clientId', 'length', 'max'=>10),
+			array('payType', 'length', 'max'=>1),
+			array('dateStart, dateEnd, dateCreated', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, zipCode, mainCity, acceptableCity, county, state', 'safe', 'on'=>'search'),
+			array('id, caregiverId, clientId, dateStart, dateEnd, amountPaid, payType, dateCreated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,11 +64,8 @@ class Zip extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'caregivers' => array(self::HAS_MANY, 'Caregiver', 'zipId'),
-			'clients' => array(self::HAS_MANY, 'Client', 'zipId'),
-			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'zipId'),
-			'employees' => array(self::HAS_MANY, 'Employee', 'zip'),
-			'facilities' => array(self::HAS_MANY, 'Facility', 'zip'),
+			'caregiver' => array(self::BELONGS_TO, 'Caregiver', 'caregiverId'),
+			'client' => array(self::BELONGS_TO, 'Client', 'clientId'),
 		);
 	}
 
@@ -78,11 +76,13 @@ class Zip extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'zipCode' => 'Zip Code',
-			'mainCity' => 'Main City',
-			'acceptableCity' => 'Acceptable City',
-			'county' => 'County',
-			'state' => 'State',
+			'caregiverId' => 'Caregiver',
+			'clientId' => 'Client',
+			'dateStart' => 'Date Start',
+			'dateEnd' => 'Date End',
+			'amountPaid' => 'Amount Paid',
+			'payType' => 'Pay Type',
+			'dateCreated' => 'Date Created',
 		);
 	}
 
@@ -98,11 +98,13 @@ class Zip extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('zipCode',$this->zipCode,true);
-		$criteria->compare('mainCity',$this->mainCity,true);
-		$criteria->compare('acceptableCity',$this->acceptableCity,true);
-		$criteria->compare('county',$this->county,true);
-		$criteria->compare('state',$this->state,true);
+		$criteria->compare('caregiverId',$this->caregiverId,true);
+		$criteria->compare('clientId',$this->clientId,true);
+		$criteria->compare('dateStart',$this->dateStart,true);
+		$criteria->compare('dateEnd',$this->dateEnd,true);
+		$criteria->compare('amountPaid',$this->amountPaid);
+		$criteria->compare('payType',$this->payType,true);
+		$criteria->compare('dateCreated',$this->dateCreated,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -1,9 +1,9 @@
 <?php
 
 /**
- * This is the model class for table "Employee".
+ * This is the model class for table "employee".
  *
- * The followings are the available columns in table 'Employee':
+ * The followings are the available columns in table 'employee':
  * @property string $id
  * @property string $fname
  * @property string $lname
@@ -41,7 +41,7 @@ class Employee extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'Employee';
+		return 'employee';
 	}
 
 	/**

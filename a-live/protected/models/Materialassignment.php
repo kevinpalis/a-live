@@ -1,29 +1,26 @@
 <?php
 
 /**
- * This is the model class for table "zip".
+ * This is the model class for table "materialassignment".
  *
- * The followings are the available columns in table 'zip':
+ * The followings are the available columns in table 'materialassignment':
  * @property string $id
- * @property string $zipCode
- * @property string $mainCity
- * @property string $acceptableCity
- * @property string $county
- * @property string $state
+ * @property string $materialmasterId
+ * @property string $employeeId
+ * @property string $assignedBy
+ * @property string $quantityAssigned
+ * @property string $dateCreated
  *
  * The followings are the available model relations:
- * @property Caregiver[] $caregivers
- * @property Client[] $clients
- * @property Clientcontactperson[] $clientcontactpeople
- * @property Employee[] $employees
- * @property Facility[] $facilities
+ * @property Materialmaster $materialmaster
+ * @property Employee $employee
  */
-class Zip extends CActiveRecord
+class Materialassignment extends CActiveRecord
 {
 	/**
 	 * Returns the static model of the specified AR class.
 	 * @param string $className active record class name.
-	 * @return Zip the static model class
+	 * @return Materialassignment the static model class
 	 */
 	public static function model($className=__CLASS__)
 	{
@@ -35,7 +32,7 @@ class Zip extends CActiveRecord
 	 */
 	public function tableName()
 	{
-		return 'zip';
+		return 'materialassignment';
 	}
 
 	/**
@@ -46,12 +43,13 @@ class Zip extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('zipCode, mainCity, acceptableCity', 'required'),
-			array('zipCode', 'length', 'max'=>10),
-			array('mainCity, acceptableCity, county, state', 'length', 'max'=>40),
+			array('materialmasterId, employeeId', 'required'),
+			array('materialmasterId, employeeId, quantityAssigned', 'length', 'max'=>10),
+			array('assignedBy', 'length', 'max'=>50),
+			array('dateCreated', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, zipCode, mainCity, acceptableCity, county, state', 'safe', 'on'=>'search'),
+			array('id, materialmasterId, employeeId, assignedBy, quantityAssigned, dateCreated', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -63,11 +61,8 @@ class Zip extends CActiveRecord
 		// NOTE: you may need to adjust the relation name and the related
 		// class name for the relations automatically generated below.
 		return array(
-			'caregivers' => array(self::HAS_MANY, 'Caregiver', 'zipId'),
-			'clients' => array(self::HAS_MANY, 'Client', 'zipId'),
-			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'zipId'),
-			'employees' => array(self::HAS_MANY, 'Employee', 'zip'),
-			'facilities' => array(self::HAS_MANY, 'Facility', 'zip'),
+			'materialmaster' => array(self::BELONGS_TO, 'Materialmaster', 'materialmasterId'),
+			'employee' => array(self::BELONGS_TO, 'Employee', 'employeeId'),
 		);
 	}
 
@@ -78,11 +73,11 @@ class Zip extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'zipCode' => 'Zip Code',
-			'mainCity' => 'Main City',
-			'acceptableCity' => 'Acceptable City',
-			'county' => 'County',
-			'state' => 'State',
+			'materialmasterId' => 'Materialmaster',
+			'employeeId' => 'Employee',
+			'assignedBy' => 'Assigned By',
+			'quantityAssigned' => 'Quantity Assigned',
+			'dateCreated' => 'Date Created',
 		);
 	}
 
@@ -98,11 +93,11 @@ class Zip extends CActiveRecord
 		$criteria=new CDbCriteria;
 
 		$criteria->compare('id',$this->id,true);
-		$criteria->compare('zipCode',$this->zipCode,true);
-		$criteria->compare('mainCity',$this->mainCity,true);
-		$criteria->compare('acceptableCity',$this->acceptableCity,true);
-		$criteria->compare('county',$this->county,true);
-		$criteria->compare('state',$this->state,true);
+		$criteria->compare('materialmasterId',$this->materialmasterId,true);
+		$criteria->compare('employeeId',$this->employeeId,true);
+		$criteria->compare('assignedBy',$this->assignedBy,true);
+		$criteria->compare('quantityAssigned',$this->quantityAssigned,true);
+		$criteria->compare('dateCreated',$this->dateCreated,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
