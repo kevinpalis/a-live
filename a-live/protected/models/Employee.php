@@ -137,4 +137,9 @@ class Employee extends CActiveRecord
         $this->password = $pass;
         return true;
     }
+
+    public function getFullName(){
+		return $this->fname.' '.$this->lname;
+	}
+
 }

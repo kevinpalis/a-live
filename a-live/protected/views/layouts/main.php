@@ -76,6 +76,8 @@
 												array('label'=>'Client'),
 												array('label'=>'Client Create', 'url'=>array('/client/create', 'tag'=>'new')),
 												array('label'=>'Client Search', 'url'=>array('/client/admin', 'tag'=>'popular')),
+												array('label'=>'Client Contact Create', 'url'=>array('/clientcontactperson/create', 'tag'=>'new')),
+
 												//Facility
 												array('label'=>'Facility'),
 												array('label'=>'Facility Create', 'url'=>array('/facility/create', 'tag'=>'new')),

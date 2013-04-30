@@ -175,4 +175,14 @@ class FacilitycontactController extends RController
 			Yii::app()->end();
 		}
 	}
+
+	public function actionGetFacilityContacts()
+	{
+		$modelName = $_POST['formName'];
+
+		if(isset($_POST[$modelName]['facilityId']))
+		{
+			return Facilitycontact::model()->getFacilityContacts($_POST[$modelName]['facilityId']);
+		}
+	}
 }
