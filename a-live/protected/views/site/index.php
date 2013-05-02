@@ -26,20 +26,22 @@ the <a href="http://www.yiiframework.com/doc/">documentation</a>.
 Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
 should you have any questions.</p-->
 
+		
 	
 <div class="row-fluid">
 	<div class="span8">
 		<div class="span3">
-		<a href=""><img src="..." class="img-polaroid" width="140px" height="140px" style="width:140px;height:140px" alt="Create Client"></a>
+		<a href="" id="iconDash" title="Create Client"><img src="../../assets/img/members.png"  class="img well" width="64px" height="64px" style="width:64px;height:64px;background-color:yellow;" alt="Create Client"></a>
+
 		</div>
 		<div class="span3">
-		<a href=""><img src="..." class="img-polaroid" width="140px" height="140px" style="width:140px;height:140px" alt="Search Client"></a>
+		<a href="" id="iconDash" title="Search Client"><img src="../../assets/img/search.png" class="img well" width="64px" height="64px" style="width:64px;height:64px;background-color:yellow;" alt="Search Client"></a>
 		</div>
 		<div class="span3">
-		<a href=""><img src="..." class="img-polaroid" width="140px" height="140px" style="width:140px;height:140px" alt="Check me in!"></a>
+		<a href="" id="iconDash" title="Check Me In!"><img src="../../assets/img/location.png" class="img well" width="64px" height="64px" style="width:64px;height:64px;background-color:yellow;" alt="Check me in!"></a>
 		</div>
 		<div class="span3">
-		<a href=""><img src="..." class="img-polaroid" width="140px" height="140px" style="width:140px;height:140px" alt="Another Option"></a>
+		<a href="" id="iconDash" title="Show Reports"><img src="../../assets/img/reports.png" class="img well" width="64px" height="64px" style="width:64px;height:64px;background-color:yellow;" alt="Another Option"></a>
 		</div>
 	</div>
 	<div class="span4 well">

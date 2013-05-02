@@ -2,6 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" style="height:100%">
 <head>
+
+	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css" media="screen, projection" />
 	<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />-->
 
@@ -69,14 +71,26 @@
 										)	
 									),
 
-							array('label'=>'Staffing', 'url'=>array('/facility'),'visible'=>!Yii::app()->user->isGuest,
+							array('label'=>'Client', 'url'=>array('/facility'),'visible'=>!Yii::app()->user->isGuest,
 								'items'=>array(
 
 												//Client
 												array('label'=>'Client'),
 												array('label'=>'Client Create', 'url'=>array('/client/create', 'tag'=>'new')),
 												array('label'=>'Client Search', 'url'=>array('/client/admin', 'tag'=>'popular')),
+												
+												array('label'=>'Client Contacts'),
 												array('label'=>'Client Contact Create', 'url'=>array('/clientcontactperson/create', 'tag'=>'new')),
+
+												array('label'=>'Client Intake'),
+												array('label'=>'Client Intake Create', 'url'=>array('/clientintake/create', 'tag'=>'new')),
+												
+								)
+							),
+
+							array('label'=>'Facility', 'url'=>array('/facility'),'visible'=>!Yii::app()->user->isGuest,
+								'items'=>array(
+
 
 												//Facility
 												array('label'=>'Facility'),
