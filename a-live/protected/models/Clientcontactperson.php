@@ -79,9 +79,9 @@ class Clientcontactperson extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'clientId' => 'Client',
-			'fname' => 'Fname',
-			'lname' => 'Lname',
+			'clientId' => 'For Client:',
+			'fname' => 'First Name',
+			'lname' => 'Last Name',
 			'address' => 'Address',
 			'createdBy' => 'Created By',
 			'zipId' => 'Zip',
@@ -116,5 +116,20 @@ class Clientcontactperson extends CActiveRecord
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
 		));
+	}
+
+	public function getFullName()
+	{
+		return $this->fname.' '.$this->lname;
+	}
+
+	public function getContactPerson()
+	{
+		return $this->fname.' '.$this->lname;
+	}
+
+		public function getCPPrimaryNumber()
+	{
+		return $this->primaryNum;
 	}
 }
