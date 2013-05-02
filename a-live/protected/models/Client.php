@@ -181,4 +181,67 @@ class Client extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getFullName(){
+		return $this->fname.' '.$this->lname;
+	}
+
+	public function getClientStatus(){
+
+		
+		$statusString="";
+		switch ($this->status) {
+			case '1':
+				$statusString = "New Referral";
+				return $statusString;
+
+			case '2':
+				$statusString = "For follow-up";
+				return $statusString;
+
+			case '3':
+				$statusString = "For Interview";
+				return $statusString;
+
+			case '4':
+				$statusString = "Closed Case";
+				return $statusString;
+
+			case '5':
+				$statusString = "Admission";
+				return $statusString;
+
+			case '6':
+				$statusString = "On-hold";
+				return $statusString;
+
+			case '7':
+				$statusString = "Termination";
+				return $statusString;
+
+			
+			default:
+					return $statusString;
+		}
+
+	}
+
+	public function getGender(){
+		
+		$statusString="";
+		switch ($this->sex) {
+			case '0':
+				$statusString = "Male";
+				return $statusString;
+
+			case '1':
+				$statusString = "Female";
+				return $statusString;
+
+					
+			default:
+					return $statusString;
+		}
+
+	}
 }

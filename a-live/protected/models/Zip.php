@@ -108,4 +108,56 @@ class Zip extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+		public function findAllCities($idZipCode,$modelName){
+		
+
+		$reglist=CHtml::listData($this->findAll('zipCode=:zipCode', array(':zipCode'=>(int)$idZipCode)), 'id', 'mainCity');
+		//$reglist=CHtml::listData($this->findAll('idZipCode>1'), 'idZipCode', 'cityName');
+        
+
+        if (isset($_POST[$modelName]['zipCode']))
+        {
+
+        	echo CHtml::tag('option', array('value'=>''), 'Select City',true);
+
+                foreach($reglist as $value=>$name)
+                {
+                        echo CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+                }
+        }
+        else
+        {
+                return $reglist;
+        }
+
+	}
+
+	public function findAllStates($idZipCode, $modelName){
+		
+
+		$reglist=CHtml::listData($this->findAll('id=:id', array(':id'=>(int)$idZipCode)), 'id', 'state');
+
+
+        if (isset($_POST[$modelName]['zipId']))
+        {
+
+        	 echo CHtml::tag('option', array('value'=>''), 'Select State',true);
+
+                foreach($reglist as $value=>$name)
+                {
+                        echo CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+                }
+        }
+        else
+        {
+                return $reglist;
+        }
+
+	}
+
+	public function getFullZipDetails(){
+
+		 return $this->mainCity.", ".$this->state." ".$this->zipCode;
+	}
 }
