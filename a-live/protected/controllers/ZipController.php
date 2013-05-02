@@ -174,4 +174,28 @@ class ZipController extends RController
 			Yii::app()->end();
 		}
 	}
+
+	public static function actionFindAllCities()
+	{
+    	
+    	$modelName = $_POST['formName'];
+    	
+  		if(isset($_POST[$modelName]['zipCode']))
+        {
+                return Zip::model()->findAllCities($_POST[$modelName]['zipCode'],$modelName);
+        }
+		
+    }
+	
+	public static function actionFindAllStates()
+	{	
+
+		$modelName = $_POST['formName'];
+
+  		if(isset($_POST[$modelName]['zipId']))
+        {
+                return Zip::model()->findAllStates($_POST[$modelName]['zipId'], $modelName);
+        }
+
+    }
 }

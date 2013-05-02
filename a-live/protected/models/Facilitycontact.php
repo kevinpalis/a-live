@@ -104,4 +104,29 @@ class Facilitycontact extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public function getFullName(){
+		return $this->fname.' '.$this->lname;
+	}
+
+		public function getFacilityContacts($facilityID)
+	{
+		$reglist=CHtml::listData($this->findAll('id=:id', array(':id'=>(int)$facilityID)), 'id', 'fullName');
+
+		if (isset($facilityID))
+        {
+
+        	 echo CHtml::tag('option', array('value'=>'NULL'), 'Select Contact',true);
+
+                foreach($reglist as $value=>$name)
+                {
+                        echo CHtml::tag('option', array('value'=>$value),CHtml::encode($name),true);
+                }
+        }
+        else
+        {
+                return $reglist;
+        }
+	}
+
 }

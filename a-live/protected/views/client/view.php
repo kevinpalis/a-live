@@ -13,9 +13,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Client #<?php echo $model->id; ?></h1>
+<h1>View Client <?php echo $model->fullName; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+<!--<?php/* $this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -43,4 +43,6 @@ $this->menu=array(
 		'dateEntered',
 		'creditLimit',
 	),
-)); ?>
+)); */?>-->
+
+<?php echo $this->renderPartial('_view', array('model'=>$model)); ?>
