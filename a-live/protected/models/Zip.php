@@ -138,7 +138,6 @@ class Zip extends CActiveRecord
 
 		$reglist=CHtml::listData($this->findAll('id=:id', array(':id'=>(int)$idZipCode)), 'id', 'state');
 
-
         if (isset($_POST[$modelName]['zipId']))
         {
 

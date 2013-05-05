@@ -45,4 +45,16 @@ $this->menu=array(
 	),
 )); */?>-->
 
-<?php echo $this->renderPartial('_view', array('model'=>$model)); ?>
+
+<?php $this->widget("bootstrap.widgets.TbTabs", array(
+    "id" => "tabs",
+    "type" => "tabs",
+    "tabs" => array(
+        array("label" => "Basic Information", "content" => $this->renderPartial('_viewBasic', array('model'=>$model),true), "active" => true),
+        array("label" => "Contact Information", "content" => $this->renderPartial('_viewClientContact', array('model'=>$model),true)),
+        array("label" => "Intake Details", "content" => "Some content"),
+        array("label" => "Referral Data", "content" => $this->renderPartial('_viewAdminData', array('model'=>$model),true)),
+    ),
+ 
+)); ?>
+<?php //echo $this->renderPartial('_view', array('model'=>$model)); ?>
