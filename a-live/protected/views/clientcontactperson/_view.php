@@ -41,6 +41,14 @@
 	<?php echo CHtml::encode($data->email); ?>
 	<br />
 
+	<b><?php echo CHtml::encode($data->getAttributeLabel('contactType')); ?>:</b>
+	<?php echo CHtml::encode($data->contactType); ?>
+	<br />
+
+	<b><?php echo CHtml::encode($data->getAttributeLabel('clientRelationship')); ?>:</b>
+	<?php echo CHtml::encode($data->clientRelationship); ?>
+	<br />
+
 	*/ ?>
 
 </div>

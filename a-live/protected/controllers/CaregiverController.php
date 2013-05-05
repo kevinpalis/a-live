@@ -1,6 +1,6 @@
 <?php
 
-class ClientController extends RController
+class CaregiverController extends RController
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -63,16 +63,16 @@ class ClientController extends RController
 	 */
 	public function actionCreate()
 	{
-		$model=new Client;
+		$model=new Caregiver;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Client']))
+		if(isset($_POST['Caregiver']))
 		{
-			$model->attributes=$_POST['Client'];
+			$model->attributes=$_POST['Caregiver'];
 			if($model->save())
-				$this->redirect(array('clientcontactperson/create?tag=new','clientId'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -92,9 +92,9 @@ class ClientController extends RController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Client']))
+		if(isset($_POST['Caregiver']))
 		{
-			$model->attributes=$_POST['Client'];
+			$model->attributes=$_POST['Caregiver'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -129,26 +129,8 @@ class ClientController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Client',array(
-		    'criteria'=>array(
-		        'with'=>array('clientcontactpeople'),
-		        'together'=>'true',
-
-
-		    ),
-		    'pagination'=>array(
-		        'pageSize'=>20,
-		    ),
-	));
+		$dataProvider=new CActiveDataProvider('Caregiver');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	public function actionList()
-	{
-		$dataProvider=new CActiveDataProvider('Client');
-		$this->render('list',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
@@ -158,10 +140,10 @@ class ClientController extends RController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Client('search');
+		$model=new Caregiver('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Client']))
-			$model->attributes=$_GET['Client'];
+		if(isset($_GET['Caregiver']))
+			$model->attributes=$_GET['Caregiver'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -175,7 +157,7 @@ class ClientController extends RController
 	 */
 	public function loadModel($id)
 	{
-		$model=Client::model()->findByPk($id);
+		$model=Caregiver::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -187,7 +169,7 @@ class ClientController extends RController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='client-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='caregiver-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
