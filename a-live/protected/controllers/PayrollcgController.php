@@ -1,6 +1,6 @@
 <?php
 
-class ClientController extends RController
+class PayrollcgController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,18 +14,16 @@ class ClientController extends RController
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
-			'rights', //use RIGHTS access control filters
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
-
 
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -44,7 +42,7 @@ class ClientController extends RController
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 
 	/**
 	 * Displays a particular model.
@@ -63,16 +61,16 @@ class ClientController extends RController
 	 */
 	public function actionCreate()
 	{
-		$model=new Client;
+		$model=new Payrollcg;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Client']))
+		if(isset($_POST['Payrollcg']))
 		{
-			$model->attributes=$_POST['Client'];
+			$model->attributes=$_POST['Payrollcg'];
 			if($model->save())
-				$this->redirect(array('clientcontactperson/create?tag=new','clientId'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -92,9 +90,9 @@ class ClientController extends RController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Client']))
+		if(isset($_POST['Payrollcg']))
 		{
-			$model->attributes=$_POST['Client'];
+			$model->attributes=$_POST['Payrollcg'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -129,26 +127,8 @@ class ClientController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Client',array(
-		    'criteria'=>array(
-		        'with'=>array('clientcontactpeople'),
-		        'together'=>'true',
-
-
-		    ),
-		    'pagination'=>array(
-		        'pageSize'=>20,
-		    ),
-	));
+		$dataProvider=new CActiveDataProvider('Payrollcg');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	public function actionList()
-	{
-		$dataProvider=new CActiveDataProvider('Client');
-		$this->render('list',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
@@ -158,10 +138,10 @@ class ClientController extends RController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Client('search');
+		$model=new Payrollcg('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Client']))
-			$model->attributes=$_GET['Client'];
+		if(isset($_GET['Payrollcg']))
+			$model->attributes=$_GET['Payrollcg'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -175,7 +155,7 @@ class ClientController extends RController
 	 */
 	public function loadModel($id)
 	{
-		$model=Client::model()->findByPk($id);
+		$model=Payrollcg::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -187,7 +167,7 @@ class ClientController extends RController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='client-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='payrollcg-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

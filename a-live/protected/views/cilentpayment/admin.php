@@ -1,12 +1,12 @@
 <?php
 $this->breadcrumbs=array(
-	'Clientcontactpeople'=>array('index'),
+	'Cilentpayments'=>array('index'),
 	'Manage',
 );
 
 $this->menu=array(
-	array('label'=>'List Clientcontactperson','url'=>array('index')),
-	array('label'=>'Create Clientcontactperson','url'=>array('create')),
+	array('label'=>'List Cilentpayment','url'=>array('index')),
+	array('label'=>'Create Cilentpayment','url'=>array('create')),
 );
 
 Yii::app()->clientScript->registerScript('search', "
@@ -15,7 +15,7 @@ $('.search-button').click(function(){
 	return false;
 });
 $('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('clientcontactperson-grid', {
+	$.fn.yiiGridView.update('cilentpayment-grid', {
 		data: $(this).serialize()
 	});
 	return false;
@@ -23,7 +23,7 @@ $('.search-form form').submit(function(){
 ");
 ?>
 
-<h1>Manage Clientcontactpeople</h1>
+<h1>Manage Cilentpayments</h1>
 
 <p>
 You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
@@ -38,23 +38,20 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 </div><!-- search-form -->
 
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
-	'id'=>'clientcontactperson-grid',
+	'id'=>'cilentpayment-grid',
 	'dataProvider'=>$model->search(),
 	'filter'=>$model,
 	'columns'=>array(
 		'id',
 		'clientId',
-		'fname',
-		'lname',
-		'address',
-		'createdBy',
+		'caregiverId',
+		'amountDebit',
+		'amountCredit',
+		'invoiceDue',
 		/*
-		'zipId',
-		'primaryNum',
-		'secondaryNum',
-		'email',
-		'contactType',
-		'clientRelationship',
+		'invoiceCreationDate',
+		'invoiceType',
+		'invoiceNotes',
 		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
