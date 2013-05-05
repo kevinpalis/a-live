@@ -1,0 +1,70 @@
+<?php
+$this->breadcrumbs=array(
+	'Caregivers'=>array('index'),
+	$model->id,
+);
+
+$this->menu=array(
+	array('label'=>'List Caregiver','url'=>array('index')),
+	array('label'=>'Create Caregiver','url'=>array('create')),
+	array('label'=>'Update Caregiver','url'=>array('update','id'=>$model->id)),
+	array('label'=>'Delete Caregiver','url'=>'#','linkOptions'=>array('submit'=>array('delete','id'=>$model->id),'confirm'=>'Are you sure you want to delete this item?')),
+	array('label'=>'Manage Caregiver','url'=>array('admin')),
+);
+?>
+
+<h1>View Caregiver #<?php echo $model->id; ?></h1>
+
+<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+	'data'=>$model,
+	'attributes'=>array(
+		'id',
+		'fname',
+		'lname',
+		'photo',
+		'address',
+		'zipId',
+		'sex',
+		'birthDate',
+		'driving',
+		'pcExpList',
+		'equipmentExpList',
+		'applicationDate',
+		'signedDocs',
+		'englishLevel',
+		'languagesSpoken',
+		'rating',
+		'height',
+		'weight',
+		'livingCondition',
+		'primaryContactNum',
+		'secondaryContactNum',
+		'email',
+		'paymentType',
+		'withCar',
+		'preferredDays',
+		'preferredTimeStart',
+		'preferredTimeEnd',
+		'totalMonthsExperience',
+		'educationalAttainment',
+		'driversLicense',
+		'driversLicenseType',
+		'driversLicensePlaceofIssue',
+		'driversLicenseExpirationDate',
+		'accidentsPastYears',
+		'accidentDetails',
+		'movingViolations',
+		'movingViolationsCount',
+		'fingerPrint',
+		'fingerPrintResults',
+		'tbTested',
+		'tbTestResults',
+		'convictedCrime',
+		'convictedCrimeDetails',
+		'characterTraits',
+		'references',
+		'notes',
+		'certifciations',
+		'followUpCall',
+	),
+)); ?>
