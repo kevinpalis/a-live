@@ -1,6 +1,6 @@
 <?php
 
-class AbsencetrackerController extends RController
+class CaregiverController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -14,18 +14,16 @@ class AbsencetrackerController extends RController
 	public function filters()
 	{
 		return array(
-			//'accessControl', // perform access control for CRUD operations
-			'rights', //use RIGHTS access control filters
+			'accessControl', // perform access control for CRUD operations
 		);
 	}
-
 
 	/**
 	 * Specifies the access control rules.
 	 * This method is used by the 'accessControl' filter.
 	 * @return array access control rules
 	 */
-	/*public function accessRules()
+	public function accessRules()
 	{
 		return array(
 			array('allow',  // allow all users to perform 'index' and 'view' actions
@@ -44,7 +42,7 @@ class AbsencetrackerController extends RController
 				'users'=>array('*'),
 			),
 		);
-	}*/
+	}
 
 	/**
 	 * Displays a particular model.
@@ -63,14 +61,14 @@ class AbsencetrackerController extends RController
 	 */
 	public function actionCreate()
 	{
-		$model=new Absencetracker;
+		$model=new Caregiver;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Absencetracker']))
+		if(isset($_POST['Caregiver']))
 		{
-			$model->attributes=$_POST['Absencetracker'];
+			$model->attributes=$_POST['Caregiver'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -92,9 +90,9 @@ class AbsencetrackerController extends RController
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Absencetracker']))
+		if(isset($_POST['Caregiver']))
 		{
-			$model->attributes=$_POST['Absencetracker'];
+			$model->attributes=$_POST['Caregiver'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -129,7 +127,7 @@ class AbsencetrackerController extends RController
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Absencetracker');
+		$dataProvider=new CActiveDataProvider('Caregiver');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 		));
@@ -140,10 +138,10 @@ class AbsencetrackerController extends RController
 	 */
 	public function actionAdmin()
 	{
-		$model=new Absencetracker('search');
+		$model=new Caregiver('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Absencetracker']))
-			$model->attributes=$_GET['Absencetracker'];
+		if(isset($_GET['Caregiver']))
+			$model->attributes=$_GET['Caregiver'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -157,7 +155,7 @@ class AbsencetrackerController extends RController
 	 */
 	public function loadModel($id)
 	{
-		$model=Absencetracker::model()->findByPk($id);
+		$model=Caregiver::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -169,7 +167,7 @@ class AbsencetrackerController extends RController
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='absencetracker-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='caregiver-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
