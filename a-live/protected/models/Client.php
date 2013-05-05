@@ -101,6 +101,7 @@ class Client extends CActiveRecord
 			'employee' => array(self::BELONGS_TO, 'Employee', 'employeeId'),
 			'facility' => array(self::BELONGS_TO, 'Facility', 'facilityId'),
 			'facilityContact' => array(self::BELONGS_TO, 'FacilityContact', 'facilityContactId'),
+			'clientcontactperson' => array(self::HAS_ONE, 'Clientcontactperson', 'clientId'),
 			'clientcontactpeople' => array(self::HAS_MANY, 'Clientcontactperson', 'clientId'),
 			'clientintakes' => array(self::HAS_MANY, 'Clientintake', 'clientId'),
 			'otherexpenses' => array(self::HAS_MANY, 'Otherexpenses', 'clientId'),
