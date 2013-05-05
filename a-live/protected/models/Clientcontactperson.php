@@ -14,6 +14,8 @@
  * @property string $primaryNum
  * @property string $secondaryNum
  * @property string $email
+ * @property integer $contactType
+ * @property integer $clientRelationship
  *
  * The followings are the available model relations:
  * @property Client $client
@@ -47,7 +49,8 @@ class Clientcontactperson extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('clientId, fname, lname, address, zipId, primaryNum', 'required'),
+			array('clientId, fname, lname, address, zipId, primaryNum, contactType, clientRelationship', 'required'),
+			array('contactType, clientRelationship', 'numerical', 'integerOnly'=>true),
 			array('clientId, zipId', 'length', 'max'=>10),
 			array('fname, lname', 'length', 'max'=>50),
 			array('address', 'length', 'max'=>100),
@@ -55,7 +58,7 @@ class Clientcontactperson extends CActiveRecord
 			array('primaryNum, secondaryNum, email', 'length', 'max'=>30),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, clientId, fname, lname, address, createdBy, zipId, primaryNum, secondaryNum, email', 'safe', 'on'=>'search'),
+			array('id, clientId, fname, lname, address, createdBy, zipId, primaryNum, secondaryNum, email, contactType, clientRelationship', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -79,15 +82,17 @@ class Clientcontactperson extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'clientId' => 'For Client:',
-			'fname' => 'First Name',
-			'lname' => 'Last Name',
+			'clientId' => 'Client',
+			'fname' => 'Fname',
+			'lname' => 'Lname',
 			'address' => 'Address',
 			'createdBy' => 'Created By',
 			'zipId' => 'Zip',
 			'primaryNum' => 'Primary Num',
 			'secondaryNum' => 'Secondary Num',
 			'email' => 'Email',
+			'contactType' => 'Contact Type',
+			'clientRelationship' => 'Client Relationship',
 		);
 	}
 
@@ -112,6 +117,8 @@ class Clientcontactperson extends CActiveRecord
 		$criteria->compare('primaryNum',$this->primaryNum,true);
 		$criteria->compare('secondaryNum',$this->secondaryNum,true);
 		$criteria->compare('email',$this->email,true);
+		$criteria->compare('contactType',$this->contactType);
+		$criteria->compare('clientRelationship',$this->clientRelationship);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,
