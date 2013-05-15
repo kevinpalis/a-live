@@ -91,12 +91,12 @@ class Caregiver extends CActiveRecord
 		return array(
 			array('sex, driversLicense, references, notes, certifciations, followUpCall', 'required'),
 			array('height, weight', 'numerical'),
-			array('fname, lname, zipId, englishLevel, languagesSpoken, rating, livingCondition, paymentType, preferredDays, totalMonthsExperience, movingViolationsCount', 'length', 'max'=>10),
+			array('fname, lname, zipId, englishLevel, languagesSpoken, rating, livingCondition, paymentType, totalMonthsExperience, movingViolationsCount', 'length', 'max'=>10),
 			array('address, notes', 'length', 'max'=>50),
 			array('sex, driving, withCar, accidentsPastYears, movingViolations, fingerPrint, tbTested, convictedCrime', 'length', 'max'=>1),
 			array('pcExpList, equipmentExpList, primaryContactNum, secondaryContactNum, educationalAttainment, driversLicenseType', 'length', 'max'=>20),
 			array('signedDocs', 'length', 'max'=>100),
-			array('email, driversLicense', 'length', 'max'=>30),
+			array('email, preferredDays, driversLicense', 'length', 'max'=>30),
 			array('driversLicensePlaceofIssue, accidentDetails, fingerPrintResults, tbTestResults, convictedCrimeDetails, characterTraits, references, certifciations', 'length', 'max'=>40),
 			array('photo, birthDate, applicationDate, preferredTimeStart, preferredTimeEnd, driversLicenseExpirationDate', 'safe'),
 			// The following rule is used by search().

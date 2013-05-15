@@ -59,12 +59,13 @@ class Clientintake extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('clientId', 'required'),
+			array('clientId, serviceDays', 'required'),
 			array('clientId', 'length', 'max'=>10),
 			array('cgSex, liveIn, cgDriving, clientsCar, pcPets, pcSmoking', 'length', 'max'=>1),
 			array('serviceHours', 'length', 'max'=>6),
 			array('createdBy', 'length', 'max'=>20),
-			array('serviceDays, cgAgeFrom, cgAgeTo, cgWeightFrom, cgWeightTo, cgHeightFrom, cgHeightTo, cgEnglishLevel', 'length', 'max'=>5),
+			array('serviceDays', 'length', 'max'=>30),
+			array('cgAgeFrom, cgAgeTo, cgWeightFrom, cgWeightTo, cgHeightFrom, cgHeightTo, cgEnglishLevel', 'length', 'max'=>5),
 			array('pcLivingCondition, pcWeightTransfer, pcConditionList, equipmentList', 'length', 'max'=>50),
 			array('notes', 'length', 'max'=>100),
 			// The following rule is used by search().

@@ -15,7 +15,7 @@
 
 	<?php echo $form->textFieldRow($model,'createdBy',array('class'=>'span5','maxlength'=>20)); ?>
 
-	<?php echo $form->textFieldRow($model,'serviceDays',array('class'=>'span5','maxlength'=>5)); ?>
+	<?php echo $form->textFieldRow($model,'serviceDays',array('class'=>'span5','maxlength'=>30)); ?>
 
 	<?php echo $form->textFieldRow($model,'cgAgeFrom',array('class'=>'span5','maxlength'=>5)); ?>
 
