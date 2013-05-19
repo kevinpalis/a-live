@@ -15,7 +15,7 @@ class CaregiverController extends RController
 	{
 		return array(
 			//'accessControl', // perform access control for CRUD operations
-			'rights', //use RIGHTS access control filters
+			'rights', //use 	RIGHTS access control filters
 		);
 	}
 
@@ -52,9 +52,26 @@ class CaregiverController extends RController
 	 */
 	public function actionView($id)
 	{
+		$model=new Caregiver;
 		$this->render('view',array(
 			'model'=>$this->loadModel($id),
 		));
+	}
+
+	public function actionCiView($id)
+	{
+		$model=new Caregiver;
+		$this->render('ciView',array(
+			'model'=>$this->loadCiModel($id),
+		));
+	}
+
+	public function loadCiModel($id)
+	{
+		$model=Clientintake::model()->findByPk($id);
+		if($model===null)
+			throw new CHttpException(404,'The requested page does not exist.');
+		return $model;
 	}
 
 	/**
@@ -129,9 +146,23 @@ class CaregiverController extends RController
 	 */
 	public function actionIndex()
 	{
+
+		/*$model=new Caregiver('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Caregiver'])) {
+			$model->attributes=$_GET['Caregiver'];
+		}
+
+		$this->render('ciView',array(
+			'model'=>$model,
+		));*/
+
+
 		$dataProvider=new CActiveDataProvider('Caregiver');
+		$ciDataProvider=new CActiveDataProvider('Clientintake');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
+			'ciDataProvider'=>$ciDataProvider,
 		));
 	}
 
@@ -141,12 +172,16 @@ class CaregiverController extends RController
 	public function actionAdmin()
 	{
 		$model=new Caregiver('search');
+		$ciModel = new Clientintake('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Caregiver']))
+		if(isset($_GET['Caregiver'], $_GET['Clientintake'])) {
 			$model->attributes=$_GET['Caregiver'];
+			$ciModel->attributes=$_GET['Clientintake'];
+		}
 
 		$this->render('admin',array(
 			'model'=>$model,
+			'ciModel'=>$ciModel,
 		));
 	}
 
