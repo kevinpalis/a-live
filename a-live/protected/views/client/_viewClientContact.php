@@ -1,5 +1,11 @@
-<?php $clientContacts = $model->clientcontactpeople(array('condition'=>$model->id));
-		
+<?php 
+
+	
+
+	$clientContacts = $model->clientcontactpeople(array('condition'=>$model->id));
+	
+	if(!empty($clientContacts[0]->id)){
+
 		$i=1;	
 		foreach($clientContacts as $clientContact)
 			{ ?>
@@ -33,7 +39,9 @@
 		<?php
 			$i++;
 			}
-	?>	
+	}else{ echo "<div>Data does not exist</div>";} 
+	
 
+	?>	
 	<br/>
 	<hr/>

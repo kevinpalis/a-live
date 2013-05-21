@@ -66,11 +66,14 @@ class ClientintakeController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
+
 		if(isset($_POST['Clientintake']))
 		{
 			$model->attributes=$_POST['Clientintake'];
+
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
+				//$this->redirect(array('../index.php/client','id'=>$model->clientId));
 		}
 
 		$this->render('create',array(
@@ -172,5 +175,142 @@ class ClientintakeController extends Controller
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function checkDuplicate($clientId){
+
+		$model = Clientintake::model()->findByAttributes(array('clientId'=>$clientId));
+		if(!empty($model)){
+			return $model->id;
+		}else
+			return false;
+	}
+
+	public function buttonHiddenDays($serviceDays){
+
+		$stringDays = '';
+		foreach($serviceDays as $loopDay => $day){
+			switch ($loopDay) {
+				case '0':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_0' name='Clientintake[serviceDays][0]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_0' name='Clientintake[serviceDays][0]'>";
+					}
+					break;
+				case '1':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_1' name='Clientintake[serviceDays][1]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_1' name='Clientintake[serviceDays][1]'>";
+					}
+					break;
+				case '2':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_2' name='Clientintake[serviceDays][2]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_2' name='Clientintake[serviceDays][2]'>";
+					}
+					break;
+				case '3':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_3' name='Clientintake[serviceDays][3]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_3' name='Clientintake[serviceDays][3]'>";
+					}
+					break;
+				case '4':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_4' name='Clientintake[serviceDays][4]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_4' name='Clientintake[serviceDays][4]'>";
+					}
+					break;
+				case '5':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_5' name='Clientintake[serviceDays][5]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_5' name='Clientintake[serviceDays][5]'>";
+					}
+					break;
+				case '6':
+					if($day=='0'){
+						$stringDays.="<input type='hidden' value='0' id='Clientintake_serviceDays_6' name='Clientintake[serviceDays][6]'>";
+					}else{
+						$stringDays.="<input type='hidden' value='1' id='Clientintake_serviceDays_6' name='Clientintake[serviceDays][6]'>";
+					}
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+			
+		}
+		return $stringDays;
+	}
+
+	public function buttonPrintDays($serviceDays){
+
+		$stringDays = '';
+		foreach($serviceDays as $loopDay => $day){
+			switch ($loopDay) {
+				case '0':
+					if($day=='0'){
+						$stringDays.="<a id='M' class='btn active' onClick='updateDays('Clientintake_serviceDays_0');'>Mon</a>";
+					}else{
+						$stringDays.="<a id='M' class='btn' onClick='updateDays('Clientintake_serviceDays_0');'>Mon</a>";
+					}
+					break;
+				case '1':
+					if($day=='0'){
+						$stringDays.="<a id='T' class='btn active' onClick='updateDays('Clientintake_serviceDays_1');'>Tue</a>";
+					}else{
+						$stringDays.="<a id='T' class='btn' onClick='updateDays('Clientintake_serviceDays_1');'>Tue</a>";
+					}
+					break;
+				case '2':
+					if($day=='0'){
+						$stringDays.="<a id='W' class='btn active' onClick='updateDays('Clientintake_serviceDays_2');'>Wed</a>";
+					}else{
+						$stringDays.="<a id='W' class='btn' onClick='updateDays('Clientintake_serviceDays_2');'>Wed</a>";
+					}
+					break;
+				case '3':
+					if($day=='0'){
+						$stringDays.="<a id='Th' class='btn active' onClick='updateDays('Clientintake_serviceDays_3');'>Thu</a>";
+					}else{
+						$stringDays.="<a id='Th' class='btn' onClick='updateDays('Clientintake_serviceDays_3');'>Thu</a>";
+					}
+					break;
+				case '4':
+					if($day=='0'){
+						$stringDays.="<a id='F' class='btn active' onClick='updateDays('Clientintake_serviceDays_4');'>Fri</a>";
+					}else{
+						$stringDays.="<a id='F' class='btn' onClick='updateDays('Clientintake_serviceDays_4');'>Fri</a>";
+					}
+					break;
+				case '5':
+					if($day=='0'){
+						$stringDays.="<a id='Sa' class='btn active' onClick='updateDays('Clientintake_serviceDays_5');'>Sat</a>";
+					}else{
+						$stringDays.="<a id='Sa' class='btn' onClick='updateDays('Clientintake_serviceDays_5');'>Sat</a>";
+					}
+					break;
+				case '6':
+					if($day=='0'){
+						$stringDays.="<a id='Su' class='btn active' onClick='updateDays('Clientintake_serviceDays_6');'>Sun</a>";
+					}else{
+						$stringDays.="<a id='Su' class='btn' onClick='updateDays('Clientintake_serviceDays_6');'>Sun</a>";
+					}
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+			
+		}
+		return $stringDays;
 	}
 }

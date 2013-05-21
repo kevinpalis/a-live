@@ -10,6 +10,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Clientintake</h1>
+<h3>Create Client Intake</h3>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

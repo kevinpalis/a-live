@@ -10,6 +10,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Create Client Contact Person</h1>
+<h1>Create Client's Contact Person</h1>
 
 <?php echo $this->renderPartial('_form', array('model'=>$model)); ?>

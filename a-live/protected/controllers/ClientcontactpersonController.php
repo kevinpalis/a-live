@@ -70,7 +70,7 @@ class ClientcontactpersonController extends Controller
 		{
 			$model->attributes=$_POST['Clientcontactperson'];
 			if($model->save())
-				$this->redirect(array('view','id'=>$model->id));
+				$this->redirect(array('clientintake/create','clientId'=>$model->clientId));
 		}
 
 		$this->render('create',array(

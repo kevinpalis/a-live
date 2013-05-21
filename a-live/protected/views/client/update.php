@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Update Client <?php echo $model->fullName; ?></h1>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_formUpdate',array('model'=>$model)); ?>

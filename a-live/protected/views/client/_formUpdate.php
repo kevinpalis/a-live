@@ -5,35 +5,8 @@
 
 	<?php echo $form->errorSummary($model); ?>
 
-	<!--
-	Client Create form header 
-	Createdy By
-	Assigned to Facility
-	Assigned to Sales Person
-	-->
 	
-	<?php echo $form->hiddenField($model,'createdBy',
-		array( 
-		'value'=>Yii::app()->user->getId()
-		)); 
-	?>
-	
-	<?php echo CHtml::hiddenField('formName',
-		'Client'
-		); 
-	?>
 
-	<?php echo $form->hiddenField($model,'holidayWork',
-		array( 
-		'value'=>"1"
-		)); 
-	?>
-
-	<?php echo $form->hiddenField($model,'dateEntered',
-		array( 
-		'value'=> date("Y-m-d H:i:s")
-		)); 
-	?>
 
 	<div class="row-fluid">
 		<div class="page-header">
@@ -43,11 +16,11 @@
 	<div class="row-fluid">
 		<div class="span6">	
 			<label for="Client_CreatedByEmail">Created By</label>
-				<input id="Client_createdByEmail" class="span12" type="text" name="Client_CreatedByEmail" value=<?php echo Yii::app()->user->name; ?> maxlength="10" readonly="readonly">
+				<input id="Client_createdByEmail" class="span12" type="text" name="Client_CreatedByEmail" value=<?php echo Employee::model()->findByPk($model->createdBy)->email; ?> maxlength="10" readonly="readonly">
 		</div>
 		<div class="span3">	
 			<label for="Client_DateCreation">Created On</label>
-				<input id="Client_DateCreation" class="span12" type="text" name="ClientDateCreation" value=<?php echo date("Y-m-d H:i:s"); ?> maxlength="10" readonly="readonly">
+				<input id="Client_DateCreation" class="span12" type="text" name="ClientDateCreation" value=<?php echo $model->dateEntered; ?> maxlength="10" readonly="readonly">
 		</div>
 	</div>
 	<div class="row-fluid">
@@ -140,7 +113,7 @@
 			)));*/
 			
 			
-			echo CHtml::dropDownList('Client[zipCode]','',CHtml::listData(Zip::model()->findAll('id>0'),'zipCode', 'zipCode'),
+			echo CHtml::dropDownList('Client[zipCode]','',CHtml::listData(Zip::model()->findAll('id>0'),'zipId', 'zipCode'),
 			array(
 					'empty'=>'Select Zip Code',
 					'ajax'=>array(
@@ -149,13 +122,15 @@
 					'update'=>'#Client_zipId',
 
 			)));
+			var_dump($model->zipId);
 			//use select2 for dropdowns
 			$this->widget('ext.select2.ESelect2',array(
   				'selector'=>'#Client_zipCode',
-  				
+  				'value'=>'2',
 			  	'options'=>array(
   					'minimumInputLength'=> 0,
-  					'width'=>'100%'
+  					'width'=>'100%',
+  					'preload' => array('1')
   					)
 				));
 		

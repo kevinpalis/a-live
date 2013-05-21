@@ -13,6 +13,6 @@ $this->menu=array(
 );
 ?>
 
-<h1>Update Clientintake <?php echo $model->id; ?></h1>
+<h3>Update Client Intake for <?php echo $model->client->fullName; ?></h3>
 
-<?php echo $this->renderPartial('_form',array('model'=>$model)); ?>
+<?php echo $this->renderPartial('_formUpdate',array('model'=>$model)); ?>

@@ -1,7 +1,4 @@
 <br>
-<br>
-<br>
-
 <?php
 /* @var $this SiteController */
 
@@ -13,21 +10,7 @@ $this->pageTitle=Yii::app()->name;
 		
 	</div>
 </div>
-<!--p>Congratulations! You have successfully created your Yii application.</p>
-
-<p>You may change the content of this page by modifying the following two files:</p>
-<ul>
-	<li>View file: <code><?php echo __FILE__; ?></code></li>
-	<li>Layout file: <code><?php echo $this->getLayoutFile('main'); ?></code></li>
-</ul>
-
-<p>For more details on how to further develop this application, please read
-the <a href="http://www.yiiframework.com/doc/">documentation</a>.
-Feel free to ask in the <a href="http://www.yiiframework.com/forum/">forum</a>,
-should you have any questions.</p-->
-
-		
-	
+<!--
 <div class="row-fluid">
 	<div class="span8">
 		<div class="span3">
@@ -44,18 +27,13 @@ should you have any questions.</p-->
 		<a href="" id="iconDash" title="Show Reports"><img src="../../assets/img/reports.png" class="img well" width="64px" height="64px" style="width:64px;height:64px;background-color:yellow;" alt="Another Option"></a>
 		</div>
 	</div>
-	<div class="span4 well">
-		<div><strong>Current Census:</strong></div>
-		<div><strong>On-going Client Count:</strong></div>
-		<div><strong>Termination Count:</strong></div>
-		<div><strong>Total Referral Count - April:</strong></div>
-		<div><strong>Total Admission Count - April:<strong></div>
-	</div>
+	
 </div>
+-->
 <hr/>
 <div class="row-fluid">
 
-	<div class="span6">
+	<div class="span8">
 		<?php 
        		$this->Widget('ext.highcharts.HighchartsWidget', array(
    			
@@ -98,10 +76,11 @@ should you have any questions.</p-->
     ?>
 			
 	</div>
-	<div class="span6" style="padding-top:45px;">
+	<div class="span4" style="padding-top:45px;">
 		<table class="table table-striped">
 			<thead>
 				<tr>
+					<th>HCS</th>
 					<th>Week 1</th>
 					<th>Week 2</th>
 					<th>Week 3</th>
@@ -110,32 +89,85 @@ should you have any questions.</p-->
 			</thead>
 			<tbody>
 				<tr>
-					<td>cell is row 0, column 0</td>
-					<td>cell is row 0, column 1</td>
-					<td>cell is row 0, column 2</td>
-					<td>cell is row 0, column 3</td>
+					<td>Michael</td>
+					<td>6</td>
+					<td>5</td>
+					<td>4</td>
+					<td>6</td>
 				</tr>
 				<tr>
-					<td>cell is row 1, column 0</td>
-					<td>cell is row 1, column 1</td>
-					<td>cell is row 1, column 2</td>
-					<td>cell is row 1, column 3</td>
+					<td>Bryan</td>
+					<td>0</td>
+					<td>1</td>
+					<td>0</td>
+					<td>1</td>
 				</tr>
 				<tr>
-					<td>cell is row 2, column 0</td>
-					<td>cell is row 2, column 1</td>
-					<td>cell is row 2, column 2</td>
-					<td>cell is row 2, column 3</td>
-				</tr>
-				<tr>
-					<td>cell is row 3, column 0</td>
-					<td>cell is row 3, column 1</td>
-					<td>cell is row 3, column 2</td>
-					<td>cell is row 3, column 3</td>
+					<td>In House</td>
+					<td>4</td>
+					<td>3</td>
+					<td>5</td>
+					<td>3</td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
+</div>
+<br>
+<br>
+<br>
+
+<div class="row-fluid">
+	
+			<div class="span2 boxed">
+				<div class="row-fluid" style="float:none;">
+					<div class="boxedtext">135</div>
+					<div class="row-fluid">
+					<div class="muted boxedtextSmall"><small>CURRENT CENSUS</small></div>
+					</div>
+				</div>
+			</div>
+			<div class="span2 boxed">
+				<div class="row-fluid" style="float:none;">
+					<div class="boxedtext">185</div>
+					<div class="row-fluid">
+					<div class="muted boxedtextSmall"><small>ON-GOING CLIENTS</small></div>
+					</div>
+				</div>
+			</div>
+			<div class="span2 boxed">
+				<div class="row-fluid" >
+					<div class="boxedtext" style="color:#AA4643;">32</div>
+					<div class="row-fluid">
+					<div class="muted boxedtextSmall"><small>TERMINATIONS</small></div>
+					</div>
+				</div>
+			</div>
+			<div class="span2 boxed">
+				<div class="row-fluid" >
+					<div class="boxedtext" style="color:#FFA500;">15</div>
+					<div class="row-fluid">
+					<div class="muted boxedtextSmall"><small>REFERRALS - APR</small></div>
+					</div>
+				</div>
+			</div>
+			<div class="span2 boxed">
+				<div class="row-fluid" >
+					<div class="boxedtext" style="color:#FFA500;">8</div>
+					<div class="row-fluid">
+					<div class="muted boxedtextSmall"><small>ADMISSIONS - APR</small></div>
+					</div>
+				</div>
+			</div>
+			<div class="span2 boxed">
+				<div class="row-fluid" >
+					<div class="boxedtext" style="color:#FFA500;">53<small>%</small></div>
+					<div class="row-fluid">
+					<div class="muted boxedtextSmall"><small>SUCCESS RATE - APR</small></div>
+					</div>
+				</div>
+			</div>
+	
 </div>
 
 

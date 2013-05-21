@@ -1,14 +1,10 @@
-<div class="row-fluid">
-		<div class="page-header">
-		<h2><small>Client Referral Data</small></h2>
-		</div>
-	</div>
+
 	<div class="row-fluid">
 		<div class="span6">
 			<label class="muted">
 			<h6>Created By:</h6>
 			</label>	
-			<span class="HL"><?php echo $model->employee->email; ?> </span>
+			<span class="HL"><?php echo Employee::model()->findByPk($model->createdBy)->email; ?> </span>
 		</div>
 		<div class="span3">	
 			<label class="muted">
@@ -37,7 +33,7 @@
 	</div>
 	<div class="span3">
 		<label class="muted">
-		<h6>Facility Contact:</h6>
+		<h6>Referred By:</h6>
 		</label>			
 			
 			<span class="HL"><?php echo $model->facilityContact->fullName; ?></span>

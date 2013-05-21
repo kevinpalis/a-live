@@ -86,4 +86,33 @@ class Equipmentlist extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	public static function getTypeName(){
+		
+		$typeString="";
+		switch ($this->equipmentType) {
+			case '0':
+				$typeString = "Mobility";
+				return $typeString;
+
+			case '1':
+				$typeString = "Apparatus";
+				return $typeString;
+
+					
+			default:
+					return $typeString;
+		
+
+		}
+
+	}
+
+	public static function getArrayEquipment(){
+		$allEquipments = $this->findAll();
+
+		
+
+
+	}
 }

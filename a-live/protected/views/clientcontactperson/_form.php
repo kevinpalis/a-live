@@ -129,9 +129,25 @@
 	</div>
 
 	<div class="row-fluid">
-		<div class="span4"><?php echo $form->textFieldRow($model,'primaryNum',array('class'=>'span9','maxlength'=>10)); ?></div>
-		<div class="span4"><?php echo $form->textFieldRow($model,'secondaryNum',array('class'=>'span9','maxlength'=>10)); ?></div>
-		<div class="span4"><?php echo $form->textFieldRow($model,'email',array('class'=>'span9','maxlength'=>20)); ?></div>
+		<div class="span4">
+			<label class="required" for="city_id">
+			Primary Number
+			<span class="required">*</span>
+			</label>
+			<?php echo $form->numberField($model,'primaryNum',array('class'=>'span12','maxlength'=>10)); ?>
+		</div>
+		<div class="span4">
+			<label class="required" for="city_id">
+			Alternate Number
+			</label>
+			<?php echo $form->numberField($model,'secondaryNum',array('class'=>'span12','maxlength'=>10)); ?>
+		</div>
+		<div class="span4">
+			<label class="required" for="city_id">
+			Email Address
+			</label>
+			<?php echo $form->emailField($model,'email',array('class'=>'span12','maxlength'=>50)); ?>
+		</div>
 	</div>
 
 	<div class="form-actions">
@@ -140,6 +156,17 @@
 			'type'=>'primary',
 			'label'=>$model->isNewRecord ? 'Create' : 'Save',
 		)); ?>
+
+		<?php 
+		if(isset($_GET['clientId'])){ 
+		?>
+		<div class="pull-right">
+		<a id="Clear" class="btn" href="<?PHP echo "../clientintake/create?clientId=".$_GET['clientId'];?>" >Skip</a>
+		
+		<?php
+		}
+		?>
+		</div>
 	</div>
 
 <?php $this->endWidget(); ?>

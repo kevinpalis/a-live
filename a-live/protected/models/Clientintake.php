@@ -61,11 +61,11 @@ class Clientintake extends CActiveRecord
 		return array(
 			array('clientId', 'required'),
 			array('clientId', 'length', 'max'=>10),
+			array('serviceDays,pcConditionList,equipmentList','type','type'=>'array'),
 			array('cgSex, liveIn, cgDriving, clientsCar, pcPets, pcSmoking', 'length', 'max'=>1),
 			array('serviceHours', 'length', 'max'=>6),
 			array('createdBy', 'length', 'max'=>20),
-			array('serviceDays, cgAgeFrom, cgAgeTo, cgWeightFrom, cgWeightTo, cgHeightFrom, cgHeightTo, cgEnglishLevel', 'length', 'max'=>5),
-			array('pcLivingCondition, pcWeightTransfer, pcConditionList, equipmentList', 'length', 'max'=>50),
+			array('pcWeightTransfer', 'length', 'max'=>50),
 			array('notes', 'length', 'max'=>100),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -156,4 +156,85 @@ class Clientintake extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeSave(){
+
+		if (!empty($this->serviceDays)) {$this->serviceDays=CJSON::encode($this->serviceDays);}
+		if (!empty($this->pcConditionList)) {$this->pcConditionList=CJSON::encode($this->pcConditionList);}
+		if (!empty($this->equipmentList)) {$this->equipmentList=CJSON::encode($this->equipmentList);}
+
+		return parent::beforeValidate();
+	}
+
+	protected function afterFind(){
+
+		parent::afterFind();
+
+        $this->serviceDays = CJSON::decode($this->serviceDays);
+
+        $this->pcConditionList = CJSON::decode($this->pcConditionList);
+
+        $this->equipmentList = CJSON::decode($this->equipmentList);    
+
+	}
+
+	public function getDaysPrint(){
+
+		$stringDays = '';
+		foreach($this->serviceDays as $loopDay => $day){
+			switch ($loopDay) {
+				case '0':
+					if($day=='0'){$stringDays.="Mon ";}
+					break;
+				case '1':
+					if($day=='0'){$stringDays.="Tue ";}
+					break;
+				case '2':
+					if($day=='0'){$stringDays.="Wed ";}
+					break;
+				case '3':
+					if($day=='0'){$stringDays.="Thu ";}
+					break;
+				case '4':
+					if($day=='0'){$stringDays .= "Fri ";}
+					break;
+				case '5':
+					if($day=='0'){$stringDays.="Sat ";}
+					break;
+				case '6':
+					if($day=='0'){$stringDays.="Sun ";}
+					break;
+				
+				default:
+					# code...
+					break;
+			}
+			
+		}
+		return $stringDays;
+	}
+
+	public function getPrintLivingCondition(){
+
+		$stringLivingCondition='';
+		switch ($this->pcLivingCondition) {
+		 	case '0':
+		 		return $stringLivingCondition = "Alone";
+		 		break;
+			case '1':
+		 		return $stringLivingCondition = "With Spouse";
+		 		break;	
+		 	case '2':
+		 		return $stringLivingCondition = "Relatives";
+		 		break;
+			case '3':
+		 		return $stringLivingCondition = "Non-Relatives";
+		 		break;
+		 	
+		 	default:
+		 		return $stringLivingCondition = " - ";
+		 		break;
+		 } 
+	}
+
 }

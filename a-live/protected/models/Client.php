@@ -72,11 +72,12 @@ class Client extends CActiveRecord
 		return array(
 			array('fname, lname, address, zipId, primaryNum, holidayWork, sex, employeeId, facilityId, facilityContactId', 'required'),
 			array('age', 'numerical', 'integerOnly'=>true),
-			array('height, weight, depositAmount, creditLimit', 'numerical'),
+			array('height, weight, primaryNum, secondaryNum,depositAmount, creditLimit', 'numerical'),
 			array('fname, lname', 'length', 'max'=>50),
 			array('address', 'length', 'max'=>100),
-			array('zipId, primaryNum, secondaryNum, status, employeeId, facilityId, facilityContactId', 'length', 'max'=>10),
-			array('email', 'length', 'max'=>20),
+			array('zipId, status, employeeId, facilityId, facilityContactId', 'length', 'max'=>10),
+			array('email', 'length', 'max'=>50),
+			array('email', 'email'),
 			array('createdBy', 'length', 'max'=>70),
 			array('holidayWork, sex, tagforUpdate', 'length', 'max'=>1),
 			array('dateStart, dateEnd, dateEntered', 'safe'),
@@ -106,6 +107,7 @@ class Client extends CActiveRecord
 			'clientintakes' => array(self::HAS_MANY, 'Clientintake', 'clientId'),
 			'otherexpenses' => array(self::HAS_MANY, 'Otherexpenses', 'clientId'),
 			'payrollcgs' => array(self::HAS_MANY, 'Payrollcg', 'clientId'),
+			
 		);
 	}
 
@@ -116,13 +118,13 @@ class Client extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'fname' => 'Fname',
-			'lname' => 'Lname',
+			'fname' => 'First Name',
+			'lname' => 'Last Name',
 			'address' => 'Address',
 			'zipId' => 'Zip',
 			'age' => 'Age',
-			'primaryNum' => 'Primary Num',
-			'secondaryNum' => 'Secondary Num',
+			'primaryNum' => 'Primary Number',
+			'secondaryNum' => 'Secondary Number',
 			'email' => 'Email',
 			'createdBy' => 'Created By',
 			'dateStart' => 'Date Start',
@@ -132,9 +134,9 @@ class Client extends CActiveRecord
 			'sex' => 'Sex',
 			'height' => 'Height',
 			'weight' => 'Weight',
-			'employeeId' => 'Employee',
-			'facilityId' => 'Facility',
-			'facilityContactId' => 'Facility Contact',
+			'employeeId' => 'Assigned To',
+			'facilityId' => 'Facility Name',
+			'facilityContactId' => 'Referred By',
 			'tagforUpdate' => 'Tagfor Update',
 			'depositAmount' => 'Deposit Amount',
 			'dateEntered' => 'Date Entered',

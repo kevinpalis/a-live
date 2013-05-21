@@ -27,24 +27,10 @@
 	<p class="help-block">Fields with <span class="required">*</span> are required.</p>
 
 	<?php echo $form->errorSummary($model); ?>
-
-
-
-	<?php echo $form->hiddenField($model,'createdBy',
-		array( 
-		'value'=>Yii::app()->user->getId()
-		)); 
-	?>
 	
 	<?php echo CHtml::hiddenField('formName',
 		'ClientIntake'
 		); 
-	?>
-
-	<?php echo $form->hiddenField($model,'dateEntered',
-		array( 
-		'value'=> date("Y-m-d H:i:s")
-		)); 
 	?>
 
 	<div class="row-fluid">
@@ -54,89 +40,27 @@
 	</div>
 	<div class="control-group">
 		
-			<?php 
+			
 
-				if(isset($_GET['clientId'])){
-					echo $form->dropDownListRow($model,'clientId',CHtml::listData(CLient::model()->findAll('id='.$_GET['clientId']),'id', 'fullName'),
-						array(
-							'class'=>'span5',
-													
-						)
-					); 
-				}
-				else
-					{
-						$sql = "SELECT id, CONCAT(fname,' ',lname) as fullName from client WHERE id NOT IN (SELECT clientId FROM clientintake)";
-						$connection = Yii::app()->db; 
-						$command = $connection->createCommand($sql);
-						
-					echo $form->dropDownListRow($model,'clientId',CHtml::listData($command->queryAll(),'id', 'fullName'),
+			<?php echo $form->dropDownListRow($model,'clientId',CHtml::listData(CLient::model()->findAll('id>0'),'id', 'fullName'),
 					array(
 							'empty'=>'Select Client',
-							'class'=>'span5',
+							'class'=>'span6',
+							'disabled' => 'true',
 							
 						)
-					); 
-				
-			//use select2 for dropdowns
-				$this->widget('ext.select2.ESelect2',array(
-	  				'selector'=>'#Clientintake_clientId',
-	  				'options'=>array(
-	  					'minimumInputLength'=> 0,
-	  					'width'=>'75%'
-	  					)
-					));
-				}
-			?>
+					); ?>
 		
 	</div>
+	<?PHP echo $this->buttonHiddenDays($model->serviceDays); ?>
 
-	<?php echo $form->hiddenField($model,'serviceDays[0]',
-		array( 
-		'value'=>'1'
-		)); 
-	?>
-	<?php echo $form->hiddenField($model,'serviceDays[1]',
-		array( 
-		'value'=>'1'
-		)); 
-	?>
-	<?php echo $form->hiddenField($model,'serviceDays[2]',
-		array( 
-		'value'=>'1'
-		));
-	?>
-	<?php echo $form->hiddenField($model,'serviceDays[3]',
-		array( 
-		'value'=>'1'
-		)); 
-	?>
-	<?php echo $form->hiddenField($model,'serviceDays[4]',
-		array( 
-		'value'=>'1'
-		)); 
-	?>
-	<?php echo $form->hiddenField($model,'serviceDays[5]',
-		array( 
-		'value'=>'1'
-		));
-	?>
-	<?php echo $form->hiddenField($model,'serviceDays[6]',
-		array( 
-		'value'=>'1'
-		));
-	?>
+	
+
 	<div class="control-group">
 		<label class="control-label">Service Days</label>
 		<div class="controls">
 			<div class="btn-group" data-toggle="buttons-checkbox">
-			<a id="M" class="btn" onClick="updateDays('Clientintake_serviceDays_0');">Mon</a>
-			<a id="T" class="btn" onClick="updateDays('Clientintake_serviceDays_1');">Tue</a>
-			<a id="W" class="btn" onClick="updateDays('Clientintake_serviceDays_2');">Wed</a>
-			<a id="Th" class="btn" onClick="updateDays('Clientintake_serviceDays_3');">Thu</a>
-			<a id="F" class="btn" onClick="updateDays('Clientintake_serviceDays_4');">Fri</a>
-			<a id="Sa" class="btn" onClick="updateDays('Clientintake_serviceDays_5');">Sat</a>
-			<a id="Su" class="btn" onClick="updateDays('Clientintake_serviceDays_6');">Sun</a>
+			<?php echo $this->buttonPrintDays($model->serviceDays); ?>
 			</div>
 		</div>
 	</div>
@@ -174,7 +98,7 @@
 		<div class="controls">
 			<?php
 			$this->widget('zii.widgets.jui.CJuiSlider', array(
-			    'value'=>1,
+			    'value'=>$model->serviceHours,
 			    'id'=>'amtSlider',
 			    // additional javascript options for the slider plugin
 			    'options'=>array(
@@ -187,7 +111,7 @@
 			    ),
 			));
 			?>
-			<input type="text" id="Clientintake_serviceHours" name="Clientintake[serviceHours]" style="border:0; color:#f6931f; font-weight:bold; width:40px" placeholder="hrs"/>
+			<input type="text" id="Clientintake_serviceHours" name="Clientintake[serviceHours]" style="border:0; color:#f6931f; font-weight:bold; width:40px" placeholder="hrs" value="<?php echo $model->serviceHours ?>"/>
 		</div>
 </div>
 
@@ -215,7 +139,7 @@
 		<div class="controls">
 			<?php
 			$this->widget('zii.widgets.jui.CJuiSlider', array(
-			    'value'=>1,
+			    'value'=>$model->pcWeightTransfer,
 			    'id'=>'amtSlider2',
 			    // additional javascript options for the slider plugin
 			    'options'=>array(
@@ -228,7 +152,7 @@
 			    ),
 			));
 			?>
-			<input type="text" id="Clientintake_pcWeightTransfer" name="Clientintake[pcWeightTransfer]" style="border:0; color:#f6931f; font-weight:bold; width:40px" placeholder="%"/>
+			<input type="text" id="Clientintake_pcWeightTransfer" name="Clientintake[pcWeightTransfer]" style="border:0; color:#f6931f; font-weight:bold; width:40px" placeholder="%" value="<?php echo $model->pcWeightTransfer; ?>"/>
 		</div>
 </div>
 <div class="control-group">
@@ -247,20 +171,23 @@
 				  'name'=>'Clientintake[pcConditionList]',
 				  'id'=>'Clientintake_pcConditionList',
 				  'data'=>$data,
-
+				  'value'=>$model->pcConditionList,
 				  'options'=>array(
 				    // 'placeholder'=>'Please enter or choose at least one friend to ask, max 100 friends.',
 				    'maximumSelectionSize'=>100,
 				    'width'=>'300px',
+				    'preload' => array('1')
+
 				  ),
+
+
 
 				  'htmlOptions'=>array(
 				    'multiple'=>'multiple',
 				    'placeholder'=>'Type Client Conditions',
-				   
 				  ),
 				));
-
+					
 				?>
 		</div>
 </div>
@@ -282,7 +209,7 @@
 				  'name'=>'Clientintake[equipmentList]',
 				  'id'=>'Clientintake_equipmentList',
 				  'data'=>$data,
-
+				  'value'=>$model->equipmentList,
 				  'options'=>array(
 				    // 'placeholder'=>'Please enter or choose at least one friend to ask, max 100 friends.',
 				    'maximumSelectionSize'=>100,

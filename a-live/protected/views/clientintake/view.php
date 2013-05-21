@@ -13,9 +13,9 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Clientintake #<?php echo $model->id; ?></h1>
+<h1>View Client <?php echo $model->client->fullName; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
+<?php /*$this->widget('bootstrap.widgets.TbDetailView',array(
 	'data'=>$model,
 	'attributes'=>array(
 		'id',
@@ -42,4 +42,18 @@ $this->menu=array(
 		'equipmentList',
 		'notes',
 	),
+)); */?>
+
+<?php $this->widget("bootstrap.widgets.TbTabs", array(
+    "id" => "tabs",
+    "type" => "tabs",
+    "tabs" => array(
+        array("label" => "Basic Information", "content" => $this->renderPartial('../client/_viewBasic', array('model'=>Client::model()->find('id='.$model->clientId)),true)),
+        array("label" => "Contact Information", "content" => $this->renderPartial('../client/_viewClientContact', array('model'=>Client::model()->find('id='.$model->clientId)),true)),
+        array("label" => "Intake Details", "content" => $this->renderPartial('../clientintake/_view', array('model'=>$model),true),"active" => true),
+        array("label" => "Admin Data", "content" => $this->renderPartial('../client/_viewAdminData', array('model'=>Client::model()->find('id='.$model->clientId)),true)),
+    ),
+ 
 )); ?>
+
+<?php //echo $this->renderPartial('_view', array('model'=>$model)); ?>

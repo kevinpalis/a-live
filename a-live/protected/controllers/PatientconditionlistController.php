@@ -1,6 +1,6 @@
 <?php
 
-class ClientController extends Controller
+class PatientconditionlistController extends Controller
 {
 	/**
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
@@ -61,18 +61,16 @@ class ClientController extends Controller
 	 */
 	public function actionCreate()
 	{
-		$model=new Client;
+		$model=new Patientconditionlist;
 
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Client']))
+		if(isset($_POST['Patientconditionlist']))
 		{
-			//compute client height
-			$_POST['Client']['height'] = ($_POST['Client']['heightFt']*12)+$_POST['Client']['heightIn'];
-			$model->attributes=$_POST['Client'];
+			$model->attributes=$_POST['Patientconditionlist'];
 			if($model->save())
-				$this->redirect(array('clientcontactperson/create','clientId'=>$model->id));
+				$this->redirect(array('view','id'=>$model->id));
 		}
 
 		$this->render('create',array(
@@ -92,12 +90,9 @@ class ClientController extends Controller
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
-		if(isset($_POST['Client']))
+		if(isset($_POST['Patientconditionlist']))
 		{
-			//compute client height
-			$_POST['Client']['height'] = ($_POST['Client']['heightFt']*12)+$_POST['Client']['heightIn'];
-			
-			$model->attributes=$_POST['Client'];
+			$model->attributes=$_POST['Patientconditionlist'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
 		}
@@ -132,26 +127,8 @@ class ClientController extends Controller
 	 */
 	public function actionIndex()
 	{
-		$dataProvider=new CActiveDataProvider('Client',array(
-		    'criteria'=>array(
-		        'with'=>array('clientcontactpeople'),
-		        'together'=>'true',
-
-
-		    ),
-		    'pagination'=>array(
-		        'pageSize'=>20,
-		    ),
-	));
+		$dataProvider=new CActiveDataProvider('Patientconditionlist');
 		$this->render('index',array(
-			'dataProvider'=>$dataProvider,
-		));
-	}
-
-	public function actionList()
-	{
-		$dataProvider=new CActiveDataProvider('Client');
-		$this->render('list',array(
 			'dataProvider'=>$dataProvider,
 		));
 	}
@@ -161,10 +138,10 @@ class ClientController extends Controller
 	 */
 	public function actionAdmin()
 	{
-		$model=new Client('search');
+		$model=new Patientconditionlist('search');
 		$model->unsetAttributes();  // clear any default values
-		if(isset($_GET['Client']))
-			$model->attributes=$_GET['Client'];
+		if(isset($_GET['Patientconditionlist']))
+			$model->attributes=$_GET['Patientconditionlist'];
 
 		$this->render('admin',array(
 			'model'=>$model,
@@ -178,7 +155,7 @@ class ClientController extends Controller
 	 */
 	public function loadModel($id)
 	{
-		$model=Client::model()->findByPk($id);
+		$model=Patientconditionlist::model()->findByPk($id);
 		if($model===null)
 			throw new CHttpException(404,'The requested page does not exist.');
 		return $model;
@@ -190,7 +167,7 @@ class ClientController extends Controller
 	 */
 	protected function performAjaxValidation($model)
 	{
-		if(isset($_POST['ajax']) && $_POST['ajax']==='client-form')
+		if(isset($_POST['ajax']) && $_POST['ajax']==='patientconditionlist-form')
 		{
 			echo CActiveForm::validate($model);
 			Yii::app()->end();

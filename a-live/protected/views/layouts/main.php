@@ -3,7 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" style="height:100%">
 <head>
 
-	<link rel="stylesheet" type="text/css" href="<?php echo Yii::app()->request->baseUrl; ?>/css/custom.css" media="screen, projection" />
+	<?PHP
+	 $baseUrl = Yii::app()->baseUrl; 
+  	 $cs = Yii::app()->getClientScript();
+  	 $cs->registerCssFile($baseUrl.'/css/custom.css');
+	?>
+
 	<!--<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />-->
 
@@ -20,6 +25,8 @@
 	<link rel="stylesheet" type="text/css" href="<?php //echo Yii::app()->request->baseUrl; ?>/css/form.css" />
 	-->
 	<title><?php echo CHtml::encode($this->pageTitle); ?></title>
+	<link rel="shortcut icon" href="<?php echo Yii::app()->request->baseUrl; ?>/assets/img/a-live.ico"> 
+	
 </head>
 
 <body style="height:100%">
@@ -126,19 +133,48 @@
 		)); ?><!-- breadcrumbs -->
 	<?php endif?>
 
+	<div class="container">
 	<?php echo $content; ?>
+	</div>
 
-	<div class="clear"></div>
-<div id="push" style="height:60px">
-	<div id="footer" style="height:60px"></div>
-		<div class="muted credit">
-			Copyright &copy; <?php echo date('Y'); ?> by A-Live.<br/>
-			All Rights Reserved.<br/>
-			<!--?php echo Yii::powered(); ?-->
+
+
+
+	<br>
+	<br>
+	<br>
+	<br>	
+    <div class="container">	
+    	<!--
+    	<div class="row-fluid">
+    		<div class="span12">
+    			<hr/>
+    			<div class="span2" style="width: 15%;">
+				    <ul class="unstyled">
+				    <li>A-live<li>
+				    <li><a href="#">About us</a></li>
+				    <li><a href="#">Blog</a></li>
+				    <li><a href="#">Contact & support</a></li>
+				    <li><a href="#">Enterprise</a></li>
+				    <li><a href="#">Site status</a></li>
+				    </ul>  
+				</div>
+			</div>
 		</div>
-	</div><!-- footer -->
-</div>
-</div>
-
+		-->
+		<hr>
+		<div class="row-fluid">
+		    <div class="span12">
+			    <div class="span8">
+				    <a href="#">Terms of Service</a>
+				    <a href="#">Privacy</a>
+				    <a href="#">Security</a>
+    			</div>
+	   			<div class="span4">
+	    			<p class="muted pull-right"> © 2013 Altruist Home Care Services. All rights reserved</p>
+	   		 	</div>
+			</div>
+   		</div>
+	</div>
 </body>
 </html>
