@@ -65,6 +65,7 @@ class Clientintake extends CActiveRecord
 			array('cgSex, liveIn, cgDriving, clientsCar, pcPets, pcSmoking', 'length', 'max'=>1),
 			array('serviceHours', 'length', 'max'=>6),
 			array('createdBy', 'length', 'max'=>20),
+			array('cgAgeFrom, cgAgeTo, cgWeightFrom, cgWeightTo, cgHeightFrom, cgHeightTo, cgEnglishLevel', 'length', 'max'=>5),
 			array('pcWeightTransfer', 'length', 'max'=>50),
 			array('notes', 'length', 'max'=>100),
 			// The following rule is used by search().

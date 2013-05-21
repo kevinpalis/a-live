@@ -23,6 +23,10 @@
 
 	<?php echo $form->textFieldRow($model,'email',array('class'=>'span5','maxlength'=>30)); ?>
 
+	<?php echo $form->textFieldRow($model,'contactType',array('class'=>'span5')); ?>
+
+	<?php echo $form->textFieldRow($model,'clientRelationship',array('class'=>'span5')); ?>
+
 	<div class="form-actions">
 		<?php $this->widget('bootstrap.widgets.TbButton', array(
 			'buttonType' => 'submit',

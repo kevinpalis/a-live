@@ -12,4 +12,5 @@
 	<?php echo CHtml::encode($data->equipmentType); ?>
 	<br />
 
+
 </div>

@@ -53,6 +53,8 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'primaryNum',
 		'secondaryNum',
 		'email',
+		'contactType',
+		'clientRelationship',
 		*/
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',

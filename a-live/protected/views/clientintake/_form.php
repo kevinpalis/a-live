@@ -284,7 +284,7 @@
 				  'data'=>$data,
 
 				  'options'=>array(
-				    // 'placeholder'=>'Please enter or choose at least one friend to ask, max 100 friends.',
+	<?php echo $form->textFieldRow($model,'serviceDays',array('class'=>'span5','maxlength'=>5)); ?>
 				    'maximumSelectionSize'=>100,
 				    'width'=>'300px',
 				  ),

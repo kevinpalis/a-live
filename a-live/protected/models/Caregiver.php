@@ -48,6 +48,10 @@
  * @property string $convictedCrime
  * @property string $convictedCrimeDetails
  * @property string $characterTraits
+ * @property string $references
+ * @property string $notes
+ * @property string $certifciations
+ * @property string $followUpCall
  *
  * The followings are the available model relations:
  * @property Absencetracker[] $absencetrackers
@@ -85,19 +89,19 @@ class Caregiver extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sex', 'required'),
+			array('sex, driversLicense, references, notes, certifciations, followUpCall', 'required'),
 			array('height, weight', 'numerical'),
-			array('fname, lname, zipId, englishLevel, languagesSpoken, rating, livingCondition, paymentType, preferredDays, totalMonthsExperience, driversLicenseType, movingViolationsCount', 'length', 'max'=>10),
-			array('address', 'length', 'max'=>50),
+			array('fname, lname, zipId, englishLevel, languagesSpoken, rating, livingCondition, paymentType, totalMonthsExperience, movingViolationsCount', 'length', 'max'=>10),
+			array('address, notes', 'length', 'max'=>50),
 			array('sex, driving, withCar, accidentsPastYears, movingViolations, fingerPrint, tbTested, convictedCrime', 'length', 'max'=>1),
-			array('pcExpList, equipmentExpList, primaryContactNum, secondaryContactNum, educationalAttainment, driversLicense', 'length', 'max'=>20),
+			array('pcExpList, equipmentExpList, primaryContactNum, secondaryContactNum, educationalAttainment, driversLicenseType', 'length', 'max'=>20),
 			array('signedDocs', 'length', 'max'=>100),
-			array('email', 'length', 'max'=>30),
-			array('driversLicensePlaceofIssue, accidentDetails, fingerPrintResults, tbTestResults, convictedCrimeDetails, characterTraits', 'length', 'max'=>40),
+			array('email, preferredDays, driversLicense', 'length', 'max'=>30),
+			array('driversLicensePlaceofIssue, accidentDetails, fingerPrintResults, tbTestResults, convictedCrimeDetails, characterTraits, references, certifciations', 'length', 'max'=>40),
 			array('photo, birthDate, applicationDate, preferredTimeStart, preferredTimeEnd, driversLicenseExpirationDate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
-			array('id, fname, lname, photo, address, zipId, sex, birthDate, driving, pcExpList, equipmentExpList, applicationDate, signedDocs, englishLevel, languagesSpoken, rating, height, weight, livingCondition, primaryContactNum, secondaryContactNum, email, paymentType, withCar, preferredDays, preferredTimeStart, preferredTimeEnd, totalMonthsExperience, educationalAttainment, driversLicense, driversLicenseType, driversLicensePlaceofIssue, driversLicenseExpirationDate, accidentsPastYears, accidentDetails, movingViolations, movingViolationsCount, fingerPrint, fingerPrintResults, tbTested, tbTestResults, convictedCrime, convictedCrimeDetails, characterTraits', 'safe', 'on'=>'search'),
+			array('id, fname, lname, photo, address, zipId, sex, birthDate, driving, pcExpList, equipmentExpList, applicationDate, signedDocs, englishLevel, languagesSpoken, rating, height, weight, livingCondition, primaryContactNum, secondaryContactNum, email, paymentType, withCar, preferredDays, preferredTimeStart, preferredTimeEnd, totalMonthsExperience, educationalAttainment, driversLicense, driversLicenseType, driversLicensePlaceofIssue, driversLicenseExpirationDate, accidentsPastYears, accidentDetails, movingViolations, movingViolationsCount, fingerPrint, fingerPrintResults, tbTested, tbTestResults, convictedCrime, convictedCrimeDetails, characterTraits, references, notes, certifciations, followUpCall', 'safe', 'on'=>'search'),
 		);
 	}
 
@@ -168,6 +172,10 @@ class Caregiver extends CActiveRecord
 			'convictedCrime' => 'Convicted Crime',
 			'convictedCrimeDetails' => 'Convicted Crime Details',
 			'characterTraits' => 'Character Traits',
+			'references' => 'References',
+			'notes' => 'Notes',
+			'certifciations' => 'Certifciations',
+			'followUpCall' => 'Follow Up Call',
 		);
 	}
 
@@ -226,6 +234,10 @@ class Caregiver extends CActiveRecord
 		$criteria->compare('convictedCrime',$this->convictedCrime,true);
 		$criteria->compare('convictedCrimeDetails',$this->convictedCrimeDetails,true);
 		$criteria->compare('characterTraits',$this->characterTraits,true);
+		$criteria->compare('references',$this->references,true);
+		$criteria->compare('notes',$this->notes,true);
+		$criteria->compare('certifciations',$this->certifciations,true);
+		$criteria->compare('followUpCall',$this->followUpCall,true);
 
 		return new CActiveDataProvider($this, array(
 			'criteria'=>$criteria,

@@ -28,5 +28,7 @@ $this->menu=array(
 		'primaryNum',
 		'secondaryNum',
 		'email',
+		'contactType',
+		'clientRelationship',
 	),
 )); ?>
