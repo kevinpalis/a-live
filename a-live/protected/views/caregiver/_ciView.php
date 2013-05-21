@@ -96,10 +96,23 @@
 	<?php echo CHtml::link('Caregiver-ClientIntake Search','#',array('class'=>'search-cc btn')); ?>
 	<br />	
 
-	<?php /*
+	<?php 
+		/*Yii::app()->clientScript->registerScript('search', "
+		$('.search-button').click(function(){
+			$('.search-form').toggle();
+			return false;
+		});
+		$('.search-form form').submit(function(){
+			$.fn.yiiGridView.update('caregiver-grid', {
+				data: $(this).serialize()
+			});
+			return false;
+		});
+		");*/
+		
 		Yii::app()->clientScript->registerScript('search-cc', "
 		$('.search-cc').click(function(){
-			$('.search-form').toggle();
+			$('.search-form-ci').toggle();
 			return false;
 		});
 		$('.search-form-ci form').submit(function(){
@@ -109,9 +122,9 @@
 			return false;
 		});
 		");
-	*/ ?>
+	 ?>
 
-	<div class="search-form-ci" style="display:none">
+	<!--div class="search-form-ci" style="display:none"-->
 	<?php //$this->renderPartial('_ciSearch',array(
 		//'model'=>$model,
 	//)); ?>

@@ -60,10 +60,22 @@ class CaregiverController extends RController
 
 	public function actionCiView($id)
 	{
-		$model=new Caregiver;
+		$model=new Caregiver('search');
 		$this->render('ciView',array(
 			'model'=>$this->loadCiModel($id),
 		));
+		
+		/////
+		/*
+		$model=new Caregiver('search');
+		$model->unsetAttributes();  // clear any default values
+		if(isset($_GET['Caregiver'])) {
+			$model->attributes=$_GET['Caregiver'];
+		}
+
+		$this->render('ciView',array(
+			'model'=>$model,
+		));*/
 	}
 
 	public function loadCiModel($id)
@@ -146,24 +158,28 @@ class CaregiverController extends RController
 	 */
 	public function actionIndex()
 	{
-
-		/*$model=new Caregiver('search');
+		$dataProvider=new CActiveDataProvider('Caregiver');
+		$ciDataProvider=new CActiveDataProvider('Clientintake');
+		$model=new Caregiver('search');
 		$model->unsetAttributes();  // clear any default values
 		if(isset($_GET['Caregiver'])) {
 			$model->attributes=$_GET['Caregiver'];
 		}
 
-		$this->render('ciView',array(
+		$this->render('index',array(
 			'model'=>$model,
-		));*/
+			'dataProvider'=>$dataProvider,
+			'ciDataProvider'=>$ciDataProvider,
+		));
 
-
+		/*
 		$dataProvider=new CActiveDataProvider('Caregiver');
 		$ciDataProvider=new CActiveDataProvider('Clientintake');
 		$this->render('index',array(
 			'dataProvider'=>$dataProvider,
 			'ciDataProvider'=>$ciDataProvider,
 		));
+		*/
 	}
 
 	/**
