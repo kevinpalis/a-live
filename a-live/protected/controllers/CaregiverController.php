@@ -6,7 +6,7 @@ class CaregiverController extends RController
 	 * @var string the default layout for the views. Defaults to '//layouts/column2', meaning
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
-	public $layout='//layouts/column2';
+	public $layout='//layouts/column1';
 
 	/**
 	 * @return array action filters
@@ -99,6 +99,7 @@ class CaregiverController extends RController
 
 		if(isset($_POST['Caregiver']))
 		{
+			$_POST['Caregiver']['height'] = ($_POST['Caregiver']['heightFt']*12)+$_POST['Caregiver']['heightIn'];
 			$model->attributes=$_POST['Caregiver'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));
@@ -123,6 +124,7 @@ class CaregiverController extends RController
 
 		if(isset($_POST['Caregiver']))
 		{
+			$_POST['Caregiver']['height'] = ($_POST['Caregiver']['heightFt']*12)+$_POST['Caregiver']['heightIn'];
 			$model->attributes=$_POST['Caregiver'];
 			if($model->save())
 				$this->redirect(array('view','id'=>$model->id));

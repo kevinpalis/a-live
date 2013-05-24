@@ -89,15 +89,17 @@ class Caregiver extends CActiveRecord
 		// NOTE: you should only define rules for those attributes that
 		// will receive user inputs.
 		return array(
-			array('sex, driversLicense, references, notes, certifciations, followUpCall', 'required'),
+			array('sex, fname, lname, address', 'required'),
 			array('height, weight', 'numerical'),
-			array('fname, lname, zipId, englishLevel, languagesSpoken, rating, livingCondition, paymentType, totalMonthsExperience, movingViolationsCount', 'length', 'max'=>10),
+			array('email', 'email'),
+			array('fname, lname, zipId, englishLevel,rating, livingCondition, paymentType, totalMonthsExperience, movingViolationsCount', 'length', 'max'=>10),
 			array('address, notes', 'length', 'max'=>50),
 			array('sex, driving, withCar, accidentsPastYears, movingViolations, fingerPrint, tbTested, convictedCrime', 'length', 'max'=>1),
-			array('pcExpList, equipmentExpList, primaryContactNum, secondaryContactNum, educationalAttainment, driversLicenseType', 'length', 'max'=>20),
+			array('primaryContactNum, secondaryContactNum, educationalAttainment, driversLicenseType', 'length', 'max'=>20),
 			array('signedDocs', 'length', 'max'=>100),
-			array('email, preferredDays, driversLicense', 'length', 'max'=>30),
-			array('driversLicensePlaceofIssue, accidentDetails, fingerPrintResults, tbTestResults, convictedCrimeDetails, characterTraits, references, certifciations', 'length', 'max'=>40),
+			array('email, driversLicense', 'length', 'max'=>30),
+			array('characterTraits,preferredDays,languagesSpoken,pcExpList,equipmentExpList,certifciations','type','type'=>'array'),
+			array('driversLicensePlaceofIssue, accidentDetails, fingerPrintResults, tbTestResults, convictedCrimeDetails, references', 'length', 'max'=>40),
 			array('photo, birthDate, applicationDate, preferredTimeStart, preferredTimeEnd, driversLicenseExpirationDate', 'safe'),
 			// The following rule is used by search().
 			// Please remove those attributes that should not be searched.
@@ -129,16 +131,16 @@ class Caregiver extends CActiveRecord
 	{
 		return array(
 			'id' => 'ID',
-			'fname' => 'Fname',
-			'lname' => 'Lname',
+			'fname' => 'First Name',
+			'lname' => 'Last Name',
 			'photo' => 'Photo',
 			'address' => 'Address',
 			'zipId' => 'Zip',
 			'sex' => 'Sex',
 			'birthDate' => 'Birth Date',
 			'driving' => 'Driving',
-			'pcExpList' => 'Pc Exp List',
-			'equipmentExpList' => 'Equipment Exp List',
+			'pcExpList' => 'Conditions Handled',
+			'equipmentExpList' => 'Equipments Handled',
 			'applicationDate' => 'Application Date',
 			'signedDocs' => 'Signed Docs',
 			'englishLevel' => 'English Level',
@@ -157,11 +159,11 @@ class Caregiver extends CActiveRecord
 			'preferredTimeEnd' => 'Preferred Time End',
 			'totalMonthsExperience' => 'Total Months Experience',
 			'educationalAttainment' => 'Educational Attainment',
-			'driversLicense' => 'Drivers License',
-			'driversLicenseType' => 'Drivers License Type',
-			'driversLicensePlaceofIssue' => 'Drivers License Placeof Issue',
-			'driversLicenseExpirationDate' => 'Drivers License Expiration Date',
-			'accidentsPastYears' => 'Accidents Past Years',
+			'driversLicense' => 'Driver\'s License',
+			'driversLicenseType' => 'License Type',
+			'driversLicensePlaceofIssue' => 'Placeof Issue',
+			'driversLicenseExpirationDate' => 'Exp. Date',
+			'accidentsPastYears' => 'Past Accidents',
 			'accidentDetails' => 'Accident Details',
 			'movingViolations' => 'Moving Violations',
 			'movingViolationsCount' => 'Moving Violations Count',
@@ -243,4 +245,47 @@ class Caregiver extends CActiveRecord
 			'criteria'=>$criteria,
 		));
 	}
+
+	protected function beforeSave(){
+
+		if (!empty($this->preferredDays)) {$this->preferredDays=CJSON::encode($this->preferredDays);}
+		if (!empty($this->languagesSpoken)) {$this->languagesSpoken=CJSON::encode($this->languagesSpoken);}
+		if (!empty($this->pcExpList)) {$this->pcExpList=CJSON::encode($this->pcExpList);}
+		if (!empty($this->equipmentExpList)) {$this->equipmentExpList=CJSON::encode($this->equipmentExpList);}
+		if (!empty($this->characterTraits)) {$this->characterTraits=CJSON::encode($this->characterTraits);}
+		if (!empty($this->certifciations)) {$this->certifciations=CJSON::encode($this->certifciations);}
+
+		if (!empty($this->birthDate)) {$this->birthDate = date("Y/m/d",strtotime($this->birthDate));}
+		if (!empty($this->applicationDate)) {$this->applicationDate = date("Y/m/d",strtotime($this->applicationDate));}
+		if (!empty($this->driversLicenseExpirationDate)) {$this->driversLicenseExpirationDate = date("Y/m/d",strtotime($this->driversLicenseExpirationDate));} 
+
+		return parent::beforeValidate();
+	}
+
+	protected function afterFind(){
+
+		parent::afterFind();
+
+        $this->preferredDays = CJSON::decode($this->preferredDays);
+
+        $this->languagesSpoken = CJSON::decode($this->languagesSpoken);
+
+        $this->pcExpList = CJSON::decode($this->pcExpList); 
+
+        $this->equipmentExpList = CJSON::decode($this->equipmentExpList); 
+
+        $this->certifciations = CJSON::decode($this->certifciations); 
+
+        $this->birthDate = date("m/d/Y",strtotime($this->birthDate));
+		
+		$this->applicationDate = date("m/d/Y",strtotime($this->applicationDate));
+
+		$this->driversLicenseExpirationDate = date("m/d/Y",strtotime($this->driversLicenseExpirationDate));		
+
+	}
+
+	public function getFullName(){
+		return $this->fname.' '.$this->lname;
+	}
+
 }

@@ -13,58 +13,7 @@ $this->menu=array(
 );
 ?>
 
-<h1>View Caregiver #<?php echo $model->id; ?></h1>
+<h1>View Caregiver <?php echo $model->fullName; ?></h1>
 
-<?php $this->widget('bootstrap.widgets.TbDetailView',array(
-	'data'=>$model,
-	'attributes'=>array(
-		'id',
-		'fname',
-		'lname',
-		'photo',
-		'address',
-		'zipId',
-		'sex',
-		'birthDate',
-		'driving',
-		'pcExpList',
-		'equipmentExpList',
-		'applicationDate',
-		'signedDocs',
-		'englishLevel',
-		'languagesSpoken',
-		'rating',
-		'height',
-		'weight',
-		'livingCondition',
-		'primaryContactNum',
-		'secondaryContactNum',
-		'email',
-		'paymentType',
-		'withCar',
-		'preferredDays',
-		'preferredTimeStart',
-		'preferredTimeEnd',
-		'totalMonthsExperience',
-		'educationalAttainment',
-		'driversLicense',
-		'driversLicenseType',
-		'driversLicensePlaceofIssue',
-		'driversLicenseExpirationDate',
-		'accidentsPastYears',
-		'accidentDetails',
-		'movingViolations',
-		'movingViolationsCount',
-		'fingerPrint',
-		'fingerPrintResults',
-		'tbTested',
-		'tbTestResults',
-		'convictedCrime',
-		'convictedCrimeDetails',
-		'characterTraits',
-		'references',
-		'notes',
-		'certifciations',
-		'followUpCall',
-	),
-)); ?>
+
+

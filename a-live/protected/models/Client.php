@@ -247,4 +247,20 @@ class Client extends CActiveRecord
 		}
 
 	}
+
+	protected function beforeSave(){
+
+		if (!empty($this->dateStart)) {$this->dateStart = date("Y/m/d",strtotime($this->dateStart));}
+		if (!empty($this->dateEnd)) {$this->dateEnd = date("Y/m/d",strtotime($this->dateEnd));}
+
+
+		return parent::beforeValidate();
+	}
+
+	protected function afterFind(){
+		$this->dateStart = date("m/d/Y",strtotime($this->dateStart));
+		$this->dateEnd = date("m/d/Y",strtotime($this->dateEnd));
+	}
+
+
 }

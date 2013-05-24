@@ -140,23 +140,6 @@
 			</div>
 		</div>
 	</div>
-<!--
-	<div class="control-group">
-		<label class="control-label">Service Days</label>
-		<div class="controls">
-			<div class="btn-group" data-toggle="buttons-checkbox">
-			<a id="M" class="btn" onClick="pushDays('Mon');">Mon</a>
-			<a id="T" class="btn" onClick="pushDays('Tue');">Tue</a>
-			<a id="W" class="btn" onClick="pushDays('Wed');">Wed</a>
-			<a id="Th" class="btn" onClick="pushDays('Thu');">Thu</a>
-			<a id="F" class="btn" onClick="pushDays('Fri');">Fri</a>
-			<a id="Sa" class="btn" onClick="pushDays('Sat');">Sat</a>
-			<a id="Su" class="btn" onClick="pushDays('Sun');">Sun</a>
-			</div>
-		</div>
-	</div>
-
--->
 
 	<div class="control-group">
 		<div class="controls">
@@ -191,16 +174,32 @@
 		</div>
 </div>
 
+<script>
+
+
+
+</script>
+
 <div class="control-group">
 	<label class="control-label">Client has Pets?</label>
 		<div class="controls">
-			<?php echo $form->radioButtonList($model,'pcPets',array("0"=>"Yes", "1"=>"No"),array('separator'=>'|','labelOptions'=>array('style'=>'display:inline'))); ?>
+			<?php echo $form->dropDownList($model,'pcPets',array("0"=>"No", "1"=>"Yes"),array('class'=>'span2')); ?>
+		</div>
+</div>
+
+<div class="control-group" id="petsDiv">
+	<label class="control-label">Pet Details</label>
+		<div class="controls">
+			<textarea class="span5" maxlength="100" width="400px" height="450px" id="Clientintake_petDetails" name="Clientintake[petDetails]"></textarea>
 		</div>
 </div>
 <div class="control-group">
 	<label class="control-label">Client Smokes?</label>
 		<div class="controls">
 			<?php echo $form->radioButtonList($model,'pcSmoking',array("0"=>"Yes", "1"=>"No"),array('separator'=>'|','labelOptions'=>array('style'=>'display:inline'))); ?>
+		
+		
+
 		</div>
 </div>
 <div class="control-group">
@@ -284,7 +283,6 @@
 				  'data'=>$data,
 
 				  'options'=>array(
-	<?php echo $form->textFieldRow($model,'serviceDays',array('class'=>'span5','maxlength'=>5)); ?>
 				    'maximumSelectionSize'=>100,
 				    'width'=>'300px',
 				  ),
