@@ -53,7 +53,7 @@
 
 	<?php echo $form->textFieldRow($model,'withCar',array('class'=>'span5','maxlength'=>1)); ?>
 
-	<?php echo $form->textFieldRow($model,'preferredDays',array('class'=>'span5','maxlength'=>10)); ?>
+	<?php echo $form->textFieldRow($model,'preferredDays',array('class'=>'span5','maxlength'=>30)); ?>
 
 	<?php echo $form->textFieldRow($model,'preferredTimeStart',array('class'=>'span5')); ?>
 
