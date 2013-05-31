@@ -7,6 +7,7 @@ class CaregiverController extends RController
 	 * using two-column layout. See 'protected/views/layouts/column2.php'.
 	 */
 	public $layout='//layouts/column2';
+	public $selectedClientintake=null;
 
 	/**
 	 * @return array action filters
@@ -64,6 +65,11 @@ class CaregiverController extends RController
 		$this->render('ciView',array(
 			'model'=>$this->loadCiModel($id),
 		));
+
+		//$GLOBALS['selectedClientintake']=Clientintake::model()->findByPk($id);
+		//if($GLOBALS['selectedClientintake']===null)
+		//	throw new CHttpException(404,'The requested clientintake does not exist.');
+		//return $GLOBALS['selectedClientintake'];
 		
 		/////
 		/*
@@ -160,8 +166,10 @@ class CaregiverController extends RController
 	{
 		$dataProvider=new CActiveDataProvider('Caregiver');
 		$ciDataProvider=new CActiveDataProvider('Clientintake');
+		//$GLOBALS['selectedClientintake']=Clientintake::model()->findByPk(1); //initial value
 		$model=new Caregiver('search');
 		$model->unsetAttributes();  // clear any default values
+		
 		if(isset($_GET['Caregiver'])) {
 			$model->attributes=$_GET['Caregiver'];
 		}
@@ -169,6 +177,43 @@ class CaregiverController extends RController
 		$this->render('index',array(
 			'model'=>$model,
 			'dataProvider'=>$dataProvider,
+			'ciDataProvider'=>$ciDataProvider,
+		));
+
+		/*
+		$dataProvider=new CActiveDataProvider('Caregiver');
+		$ciDataProvider=new CActiveDataProvider('Clientintake');
+		$this->render('index',array(
+			'dataProvider'=>$dataProvider,
+			'ciDataProvider'=>$ciDataProvider,
+		));
+		*/
+	}
+
+	public function actionCiAdmin($id)
+	{
+		if($id===null)
+			throw new CHttpException(404,'ID is required.');
+		$dataProvider=new CActiveDataProvider('Caregiver');
+		$ciDataProvider=new CActiveDataProvider('Clientintake');
+		$this->selectClientIntake($id);
+		$ciModel=Clientintake::model()->findByPk($id); //initial value
+
+		if($ciModel===null)
+			throw new CHttpException(404,'The requested clientintake does not exist.');
+
+
+		$model=new Caregiver('search');
+		$model->unsetAttributes();  // clear any default values
+		
+		if(isset($_GET['Caregiver'])) {
+			$model->attributes=$_GET['Caregiver'];
+		}
+
+		$this->render('ciAdmin',array(
+			'model'=>$model,
+			'dataProvider'=>$dataProvider,
+			'ciModel'=>$ciModel,
 			'ciDataProvider'=>$ciDataProvider,
 		));
 
@@ -201,6 +246,7 @@ class CaregiverController extends RController
 		));
 	}
 
+
 	/**
 	 * Returns the data model based on the primary key given in the GET variable.
 	 * If the data model is not found, an HTTP exception will be raised.
@@ -225,5 +271,21 @@ class CaregiverController extends RController
 			echo CActiveForm::validate($model);
 			Yii::app()->end();
 		}
+	}
+
+	public function selectClientIntake($id)
+	{
+		$GLOBALS['selectedClientintake']=Clientintake::model()->findByPk($id);
+		if($GLOBALS['selectedClientintake']===null)
+			throw new CHttpException(404,'The requested clientintake does not exist.');
+		return $GLOBALS['selectedClientintake'];
+	}
+
+	public function actionSetCI($id)
+	{
+		$GLOBALS['selectedClientintake']=Clientintake::model()->findByPk($id);
+		if($GLOBALS['selectedClientintake']===null)
+			throw new CHttpException(404,'The requested clientintake does not exist.');
+		return $GLOBALS['selectedClientintake'];
 	}
 }

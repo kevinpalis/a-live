@@ -1,45 +1,50 @@
 <?php
 $this->breadcrumbs=array(
-	'Caregivers'=>array('index'),
-	'Manage',
+	'Caregivers-Clientintake',
 );
 
-$this->menu=array(
-	array('label'=>'List Caregiver','url'=>array('index')),
-	array('label'=>'Create Caregiver','url'=>array('create')),
-);
-
-Yii::app()->clientScript->registerScript('search', "
-$('.search-button').click(function(){
-	$('.search-form').toggle();
-	return false;
-});
-$('.search-form form').submit(function(){
-	$.fn.yiiGridView.update('caregiver-grid', {
-		data: $(this).serialize()
-	});
-	return false;
-});
-");
 ?>
 
-<h1>Manage Caregivers</h1>
+<h1>Caregivers</h1>
 
-<p>
-You may optionally enter a comparison operator (<b>&lt;</b>, <b>&lt;=</b>, <b>&gt;</b>, <b>&gt;=</b>, <b>&lt;&gt;</b>
-or <b>=</b>) at the beginning of each of your search values to specify how the comparison should be done.
-</p>
+<?php $this->widget('bootstrap.widgets.TbListView',array(
+	'dataProvider'=>$dataProvider,
+	'itemView'=>'_view',
+)); ?>
 
-<?php echo CHtml::link('Advanced Search','#',array('class'=>'search-button btn')); ?>
+<h1>Clientintakes</h1>
+
+<?php $this->widget('bootstrap.widgets.TbListView',array(
+	'dataProvider'=>$ciDataProvider,
+	'itemView'=>'_ciView',
+)); ?>
+
+<?php 
+	
+	Yii::app()->clientScript->registerScript('search-cc', "
+	var selectedCI = '0';
+	$('.search-cc').click(function(){
+		$('.search-form-ci').toggle();
+		return false;
+	});
+	$('.search-form-ci form').submit(function(){
+		$.fn.yiiGridView.update('caregiver-grid', {
+			data: $(this).serialize()
+		});
+		return false;
+	});
+	");
+?>
+
 <br />
-<br />
-
-<div class="search-form" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php echo CHtml::link('Caregiver-ClientIntake Search','#',array('class'=>'search-cc btn')); ?>
+<br />	
+<div class="search-form-ci" style="display:none">
+<?php $this->renderPartial('_ciSearch',array(
 	'model'=>$model,
 )); ?>
-</div><!-- search-form -->
-
+</div>
+<br /><br /><br />
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'caregiver-grid',
 	'dataProvider'=>$model->search(),
@@ -51,7 +56,6 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'photo',
 		'address',
 		'zipId',
-		/*
 		'sex',
 		'birthDate',
 		'driving',
@@ -94,10 +98,10 @@ or <b>=</b>) at the beginning of each of your search values to specify how the c
 		'notes',
 		'certifciations',
 		'followUpCall',
-		*/
+		
 		array(
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
-)); ?>
-
+	)); 
+?>
