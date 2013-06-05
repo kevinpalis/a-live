@@ -92,42 +92,30 @@
 	<b><?php echo CHtml::encode($data->getAttributeLabel('notes')); ?>:</b>
 	<?php echo CHtml::encode($data->notes); ?>
 	<br />
+	<!--?php echo CHtml::link('Select clientIntake','#',array('class'=>'select-cc btn')); ?-->
+	<!--?php $form=$this->beginWidget('bootstrap.widgets.TbActiveForm',array(
+	'action'=>Yii::app()->createUrl("setCI",array('id'=>$data->id)),
+	'method'=>'get',
+	)); ?-->
 
-	<?php echo CHtml::link('Caregiver-ClientIntake Search','#',array('class'=>'search-cc btn')); ?>
-	<br />	
+	<!--?php $this->widget('bootstrap.widgets.TbButton',array(
+		'label' => 'Select clientIntake',
+		'buttonType' => 'submit',
+		'type' => 'primary',
+		'size' => 'small'
+		));
+	?-->
+	<!--?php $this->endWidget(); ?-->
 
-	<?php 
-		/*Yii::app()->clientScript->registerScript('search', "
-		$('.search-button').click(function(){
-			$('.search-form').toggle();
-			return false;
-		});
-		$('.search-form form').submit(function(){
-			$.fn.yiiGridView.update('caregiver-grid', {
-				data: $(this).serialize()
-			});
-			return false;
-		});
-		");*/
-		
-		Yii::app()->clientScript->registerScript('search-cc', "
-		$('.search-cc').click(function(){
-			$('.search-form-ci').toggle();
-			return false;
-		});
-		$('.search-form-ci form').submit(function(){
-			$.fn.yiiGridView.update('caregiver-grid', {
-				data: $(this).serialize()
-			});
-			return false;
-		});
-		");
-	 ?>
-
-	<!--div class="search-form-ci" style="display:none"-->
-	<?php //$this->renderPartial('_ciSearch',array(
-		//'model'=>$model,
-	//)); ?>
-	</div>
+	<!--?php echo CHtml::submitButton('Dang you!', array('submit'=>'selectClientIntake')); ?-->
+	<!--?php echo $this->selectClientIntake($data->id)->cgSex; ?-->
+	<!--?php echo CHtml::button('Set',
+    array(
+        'submit'=>array('ciView',array('id'=>$data->id)),
+        'confirm' => 'Are you sure?'
+        // or you can use 'params'=>array('id'=>$id)
+    )
+	);
+	?-->
 
 </div>

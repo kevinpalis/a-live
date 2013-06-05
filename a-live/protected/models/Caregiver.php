@@ -201,7 +201,8 @@ class Caregiver extends CActiveRecord
 		$criteria->compare('sex',$this->sex,true);
 		$criteria->compare('birthDate',$this->birthDate,true);
 		$criteria->compare('driving',$this->driving,true);
-		$criteria->compare('pcExpList',$this->pcExpList,true);
+		//$criteria->compare('pcExpList',explode(",", $this->pcExpList),true);
+		$criteria->compare('pcExpList', $this->pcExpList,true);
 		$criteria->compare('equipmentExpList',$this->equipmentExpList,true);
 		$criteria->compare('applicationDate',$this->applicationDate,true);
 		$criteria->compare('signedDocs',$this->signedDocs,true);
@@ -216,7 +217,8 @@ class Caregiver extends CActiveRecord
 		$criteria->compare('email',$this->email,true);
 		$criteria->compare('paymentType',$this->paymentType,true);
 		$criteria->compare('withCar',$this->withCar,true);
-		$criteria->compare('preferredDays',$this->preferredDays,true);
+		//$criteria->compare('preferredDays',explode(",", $this->preferredDays),true, 'AND', true);
+		$criteria->compare('preferredDays', $this->preferredDays, true);
 		$criteria->compare('preferredTimeStart',$this->preferredTimeStart,true);
 		$criteria->compare('preferredTimeEnd',$this->preferredTimeEnd,true);
 		$criteria->compare('totalMonthsExperience',$this->totalMonthsExperience,true);

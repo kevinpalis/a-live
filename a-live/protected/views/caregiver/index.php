@@ -23,14 +23,53 @@ $this->menu=array(
 	'itemView'=>'_ciView',
 )); ?>
 
+<?php 
+	/*Yii::app()->clientScript->registerScript('search', "
+	$('.search-button').click(function(){
+		$('.search-form').toggle();
+		return false;
+	});
+	$('.search-form form').submit(function(){
+		$.fn.yiiGridView.update('caregiver-grid', {
+			data: $(this).serialize()
+		});
+		return false;
+	});
+	");*/
+	
+	Yii::app()->clientScript->registerScript('search-cc', "
+	var selectedCI = '0';
+	$('.search-cc').click(function(){
+		$('.search-form-ci').toggle();
+		return false;
+	});
+	$('.search-form-ci form').submit(function(){
+		$.fn.yiiGridView.update('caregiver-grid', {
+			data: $(this).serialize()
+		});
+		return false;
+	});
+	");
+?>
 
+<?php Yii::app()->clientScript->registerScript('set-ci', "
+		$('.setci').click(function(){
+			selectedCI = $(('.idcontnr'+($('.setci')).text())).text();
+			window.alert($('.setci').text());
+			return false;
+		});
+		");
+?>
 
+<br />
+<?php echo CHtml::link('Caregiver-ClientIntake Search111','#',array('class'=>'search-cc btn')); ?>
+<br />	
 <div class="search-form-ci" style="display:none">
-<?php $this->renderPartial('_search',array(
+<?php $this->renderPartial('_ciSearch',array(
 	'model'=>$model,
 )); ?>
 </div>
-Kevin
+<br /><br /><br />
 <?php $this->widget('bootstrap.widgets.TbGridView',array(
 	'id'=>'caregiver-grid',
 	'dataProvider'=>$model->search(),
@@ -90,4 +129,5 @@ Kevin
 			'class'=>'bootstrap.widgets.TbButtonColumn',
 		),
 	),
-)); ?>
+	)); 
+?>
